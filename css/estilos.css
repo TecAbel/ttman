@@ -1,0 +1,256 @@
+:root{
+    --color-primario: #D57E40;
+    --color-secundario: #D3D3D3;
+    --color-enfasis:#FF0000;
+    --color-foot: #A85B24;
+
+    --fuente-titulos: 'Courgette', cursive;
+
+    --fuente-cuerpo:'Montserrat', sans-serif;
+}
+
+/*
+    GENERALES
+*/
+html{
+    box-sizing: border-box;
+    }
+    *,*::before,*::after{
+    box-sizing: inherit;
+    }
+
+body{
+    background-color: var(--color-primario);
+    font-family: var(--fuente-cuerpo);
+}
+
+h1,h2,h3{
+    font-family: var(--fuente-titulos);
+    text-align: center;
+    padding: 30px;
+    margin: 0;
+}
+
+hr{
+    width: 90%;
+    border-bottom: 1px solid var(--color-primario);
+    margin: 10px auto;
+}
+
+.color-primario{
+    color: var(--color-primario);
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: ".";    
+  display: block;    
+  height: 0;    
+  overflow: hidden;        
+}
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1 ;} /* IE < 8 */
+
+.btn{
+    text-decoration: none;
+    padding: 10px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.btn.primario{
+    background-color: var(--color-primario);
+    color: white;
+    transition: .4s ease-in-out;
+}
+.btn.primario:hover{
+    background-color: rgb(197, 99, 28);
+}
+
+.btn.secundario{
+    background-color: var(--color-secundario);
+    color: black;
+    transition: .4s ease-in-out;
+}
+
+.btn.secundario:hover{
+    background-color: rgb(158, 157, 157);
+}
+
+/*
+    HERO
+*/
+
+@media only screen and (min-width: 758px){
+    .hero{
+        background-position: center;
+        background-size: cover;
+    }
+}
+
+.hero{
+    background-image: url('../img/hero.jpg');
+    background-position: right;
+    background-size: cover;
+    height: 100vh;
+}
+
+.logo-btns{
+    margin: 0 auto;
+    width: 90%;
+    height: 80vh;
+    margin-top: 5vh;
+    background-color: white;
+    padding: 10px;
+}
+
+@media only screen and (min-width: 758px){
+    .logo-btns{
+        float: right;
+        height: 70%;
+        width: 30%;
+        margin-top: 10vh;
+        margin-right: 20vw;
+    }
+}
+
+.logo{
+    /*background-color: black;**/
+    background-image: url('../img/logo.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 80%;
+    width: 100%;
+}
+
+.contenedor-btns{
+    height: 20%;
+    width: 100%;
+}
+.contenedor-btns .btn{
+    font-size: 1em;
+}
+@media only screen and (min-width: 758px){
+    .contenedor-btns .btn{
+        font-size: 1.5em;
+    }
+}
+
+.sombra{
+    -webkit-box-shadow: 0px 4px 7px 1px rgba(0,0,0,0.68);
+    -moz-box-shadow: 0px 4px 7px 1px rgba(0,0,0,0.68);
+    box-shadow: 0px 4px 7px 1px rgba(0,0,0,0.68);
+    margin-bottom: 4rem;
+}
+
+
+/*
+    CUERPO
+*/
+
+.contenedor{
+    background-color: white;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.contenedor-articulo, .contenedor-contacto{
+    width: 100%;
+}
+
+.contenedor-articulo .parrafo{
+    font-size: 1.2em;
+    padding: 18px;
+    text-align: center;
+}
+@media only screen and (min-width: 758px){
+    .contenedor-articulo .parrafo{
+        width: 50%;
+        padding: 40px;
+    }
+    .float-left{
+        float: left;
+    }
+    
+    .float-right{
+        float: right;
+    }
+}
+
+
+.contenedor-articulo img{
+    display: block;
+    margin: 0 auto;
+    width: 90%;
+    padding: 10px;
+}
+@media only screen and (min-width: 758px){
+    .contenedor-articulo img{
+        padding: 40px;
+        width: 50%;
+    }
+}
+
+.campos{
+    width: 100%;
+    padding: 10px;
+}
+@media only screen and (min-width: 758px){
+    .campos{
+        padding: 40px;
+        width: 50%;
+    }
+
+}
+.campos input{
+    width: 100%;
+    margin: 0 auto;
+    padding: 1.2em;
+    margin: 10px auto;
+    font-size: 1em;
+}
+
+button.btn-img{
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    padding: 15px;
+    opacity: .8;
+    filter: alpha(opacity=50);
+    transition: .4s ease-in-out;
+}
+@media only screen and (min-width: 758px){
+    button.btn-img{
+        width: 50%;
+    }
+}
+button.btn-img:hover{
+    cursor: pointer;
+    opacity: 1;
+}
+
+
+/*
+    FOOTER
+*/
+
+.footer{
+    background-color: var(--color-foot);
+    height: 10vh;
+    width: 100%;
+    bottom: 0;
+}
+
+.footer p{
+    padding: 20px ;
+    text-align: center;
+    color: white;
+}
+
+
