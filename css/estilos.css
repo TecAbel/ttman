@@ -240,6 +240,14 @@ button.btn-img:hover{
 }
 
 
+#contacto input{
+    border: 2px solid var(--color-secundario);
+}
+#contacto input:focus{
+    border: 2px solid var(--color-primario);
+}
+
+
 /*
     FOOTER
 */
