@@ -47,13 +47,15 @@ hr{
 
 .clearfix:before,
 .clearfix:after {
-  content: ".";    
-  display: block;    
-  height: 0;    
-  overflow: hidden;        
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
 }
-.clearfix:after { clear: both; }
-.clearfix { zoom: 1 ;} /* IE < 8 */
+
+.clearfix:after {
+  clear: both;
+}
 
 .btn{
     text-decoration: none;
@@ -137,38 +139,59 @@ hr{
 
 .navegacion-principal{
     display: none;
-    float: right;
-    margin-top: 20px;
+    width: 100%;
+    background-color: var(--color-primario);
 }
 @media only screen and (min-width: 768px){
     .navegacion-principal{
         display: block;
+        text-align: right;
+        float: right;
+        margin-top: 10px;
+        width: 70%;
+        background-color: transparent;
     }
 }
 .navegacion-principal a{
-    font-size: 1.2em;
     text-decoration: none;
     color: white;
     text-transform: uppercase;
-    padding: 10px;
-    padding-bottom: 5px;
-    transition: .4s ease-in-out;
+    font-size: 1.2em;
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 5px;
+    clear: both;
 }
+@media only screen and (min-width: 768px){
+    .navegacion-principal a{
+        display: inline-block!important;
+        padding: 10px;
+        padding-bottom: 5px;
+        transition: .4s ease-in-out;
+        clear: both;
+    }
+}
+
 .navegacion-principal a.activo{
-    border-bottom: 2px solid white;
+    border: 1px solid white;
 }
 .navegacion-principal a:hover{
     background-color: var(--color-foot);
 }
 
-.menu-movil{
-    float: right;
-}
 
 .menu-movil{
+    display: block;
+    float: right;
     color: white;
     padding: 10px;
     font-size: 1.2em;
+}
+@media only screen and (min-width: 768px){
+    .menu-movil{
+        display: none;
+    }
 }
 
 
