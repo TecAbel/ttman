@@ -20,8 +20,12 @@ html{
     }
 
 body{
-    background-color: var(--color-primario);
+    height: 100%;
     font-family: var(--fuente-cuerpo);
+}
+
+body#index{
+    background-color: var(--color-primario);
 }
 
 h1,h2,h3{
@@ -99,6 +103,50 @@ hr{
     height: 100vh;
 }
 
+/*
+    BARRA
+*/
+
+.barra{
+    width: 100%;
+    position: fixed;
+    background-color: var(--color-primario);
+    height: 8vh;
+    z-index: 2;
+}
+
+.logo-nav{
+    margin-top: 10px;
+    float: left;
+    width: 25%;
+    height: 100%;
+}
+
+.logo-nav img{
+    max-width: 8vh;
+    border-radius: 10px;
+}
+
+.navegacion-principal{
+    float: right;
+    margin-top: 20px;
+}
+
+.navegacion-principal a{
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    padding: 10px;
+    transition: .4s ease-in-out;
+}
+.navegacion-principal a.activo{
+    border-bottom: 2px solid white;
+}
+.navegacion-principal a:hover{
+    background-color: var(--color-foot);
+}
+
+
 .logo-btns{
     width: 90%;
     margin-top: 5vh;
@@ -158,9 +206,12 @@ hr{
 */
 
 .contenedor{
-    background-color: white;
     max-width: 1000px;
     margin: 0 auto;
+}
+
+.contenedor-index{
+    background-color: white;
     border-radius: 10px;
 }
 
@@ -252,11 +303,11 @@ button.btn-img:hover{
     FOOTER
 */
 
-.footer{
+footer{
+    margin-top: 20px;
     background-color: var(--color-foot);
-    height: 10vh;
     width: 100%;
-    bottom: 0;
+    bottom: 0!important;
 }
 
 .footer p{
