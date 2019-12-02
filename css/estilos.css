@@ -3,9 +3,9 @@
     --color-secundario: #D3D3D3;
     --color-enfasis:#FF0000;
     --color-foot: #A85B24;
+    --color-verde: #5CB85C;
 
     --fuente-titulos: 'Courgette', cursive;
-
     --fuente-cuerpo:'Montserrat', sans-serif;
 }
 
@@ -40,7 +40,9 @@ hr{
     border-bottom: 1px solid var(--color-primario);
     margin: 10px auto;
 }
-
+.centrado{
+    text-align: center;
+}
 .color-primario{
     color: var(--color-primario);
 }
@@ -116,6 +118,12 @@ hr{
     height: 8vh;
     z-index: 2;
 }
+@media only screen and (min-width: 768px){
+    .barra{
+        height: 10vh;
+    }
+}
+
 
 .logo-nav{
     float: left;
@@ -259,6 +267,7 @@ hr{
 .contenedor{
     max-width: 1000px;
     margin: 0 auto;
+    margin-bottom: 20px;
 }
 
 .contenedor-index{
@@ -347,6 +356,14 @@ button.btn-img:hover{
 }
 #contacto input:focus{
     border: 2px solid var(--color-primario);
+}
+
+/*
+    APP
+*/
+
+.contenedor-app{
+    padding-top: 11vh;
 }
 
 
