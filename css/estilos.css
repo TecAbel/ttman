@@ -116,11 +116,19 @@ hr{
 }
 
 .logo-nav{
-    margin-top: 10px;
     float: left;
-    width: 25%;
+    width: 75%;
     height: 100%;
+    padding: 7px;
 }
+@media only screen and (min-width: 768px){
+    .logo-nav{
+        width: 25%;
+        padding: 10px;
+    }
+}
+
+
 
 .logo-nav img{
     max-width: 8vh;
@@ -128,15 +136,22 @@ hr{
 }
 
 .navegacion-principal{
+    display: none;
     float: right;
     margin-top: 20px;
 }
-
+@media only screen and (min-width: 768px){
+    .navegacion-principal{
+        display: block;
+    }
+}
 .navegacion-principal a{
+    font-size: 1.2em;
     text-decoration: none;
     color: white;
     text-transform: uppercase;
     padding: 10px;
+    padding-bottom: 5px;
     transition: .4s ease-in-out;
 }
 .navegacion-principal a.activo{
@@ -145,6 +160,18 @@ hr{
 .navegacion-principal a:hover{
     background-color: var(--color-foot);
 }
+
+.menu-movil{
+    float: right;
+}
+
+.menu-movil{
+    color: white;
+    padding: 10px;
+    font-size: 1.2em;
+}
+
+
 
 
 .logo-btns{
