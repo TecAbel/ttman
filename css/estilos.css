@@ -475,6 +475,9 @@ button.btn-img:hover{
     width: 95%;
     margin: 0 auto;
     margin-bottom: 20px;
+}
+
+.contenedor.tablas{
     overflow: scroll;
 }
 
