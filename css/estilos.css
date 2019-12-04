@@ -4,6 +4,7 @@
     --color-enfasis:#FF0000;
     --color-foot: #A85B24;
     --color-verde: #5CB85C;
+    --color-logo:#FFA971;
 
     --fuente-titulos: 'Courgette', cursive;
     --fuente-cuerpo:'Montserrat', sans-serif;
@@ -406,7 +407,7 @@ button.btn-img:hover{
 }
 
 .empleador-cuadro .boton-circular{
-    background-color: var(--color-primario);
+    background-color: #00344d;
     border: none;
     width: 100%;
     height: 100%;
