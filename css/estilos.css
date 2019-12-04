@@ -46,6 +46,10 @@ hr{
 }
 .boton-circular{
     border-radius: 50%;
+
+}
+.boton-circular a{
+    text-decoration: none;
 }
 
 .centrado{
