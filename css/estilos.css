@@ -89,6 +89,7 @@ hr{
     margin-bottom: 10px;
     border-radius: 10px;
     font-weight: bold;
+    border: none;
 }
 
 .btn.primario{
@@ -111,10 +112,12 @@ hr{
     background-color: var(--color-secundario);
     color: black;
     transition: .4s ease-in-out;
+    border: 1px solid var(--color-logo);
 }
 
 .btn.secundario:hover{
     background-color: rgb(158, 157, 157);
+    
 }
 
 /*
@@ -379,10 +382,11 @@ button.btn-img:hover{
 }
 
 
-#contacto input{
+input{
     border: 2px solid var(--color-secundario);
+    background-color: white;
 }
-#contacto input:focus{
+input:focus{
     border: 2px solid var(--color-primario);
 }
 
@@ -530,6 +534,60 @@ button.btn-img:hover{
     text-decoration: none;
     color: var(--color-azul);
 }
+.subtotal .float-left{
+    width: 50%;
+}
+
+.subtotal .float-right{
+    width: 50%;
+}
+
+/*
+    FORMS
+*/
+
+.contenedor-campos{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+}
+@media only screen and (min-width: 768px){
+    form{
+        display: flex;
+        
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    
+    .campo{
+        width: 50%;
+        flex: 1 0 50%;
+    }
+    .w-100{
+        width: 100%!important;
+        flex: 1 0 100%;
+    }
+}
+
+.campo{
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.campo input, select, textarea{
+    width: 100%;
+    padding: 5px;
+    font-size: 1.2em;
+}
+.campo label{
+    width: 100%;
+}
+
+
 
 
 /*
@@ -549,11 +607,7 @@ footer{
     color: white;
 }
 
-.subtotal .float-left{
-    width: 50%;
-}
 
-.subtotal .float-right{
-    width: 50%;
-}
+
+
 
