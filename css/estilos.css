@@ -7,6 +7,7 @@
     --color-logo:#FFA971;
     --color-amarillo: #ffc107;
     --color-azul: #00344d;
+    --color-negro: #343a40;
 
     --fuente-titulos: 'Courgette', cursive;
     --fuente-cuerpo:'Montserrat', sans-serif;
@@ -468,11 +469,14 @@ button.btn-img:hover{
 }
 .btns-archivo{
     width: 20%;
-    font-size: 1.6em;
+    font-size: 1.2em;
     text-align: right;
 }
+.btns-archivo a{
+    font-size: 1.7em;
+}
 .seccion-reporte{
-    width: 95%;
+    width: 100%;
     margin: 0 auto;
     margin-bottom: 20px;
 }
@@ -484,6 +488,9 @@ button.btn-img:hover{
 @media only screen and (min-width: 768px){
     .seccion-reporte{
         width: 100%;
+    }
+
+    .contenedor.tablas{
         overflow: hidden;
     }
 
@@ -497,7 +504,7 @@ button.btn-img:hover{
     TABLAS
 */
 
-.tabla-actividades{
+.tabla-actividades, .tabla-detalles{
     text-align: center;
     width: 100%;
     border: none;
@@ -508,13 +515,18 @@ button.btn-img:hover{
     color: white;
     padding: 12px;
 }
-
-.tabla-actividades td{
-    background-color: whitesmoke;
-    padding: 5px;
+.tabla-detalles th{
+    background-color: var(--color-negro);
+    color: white;
+    padding: 12px;
 }
 
-.tabla-actividades td strong a{
+.tabla-actividades td, .tabla-detalles td{
+    background-color: rgb(235, 235, 235);
+    padding: 10px;
+}
+
+.tabla-actividades td strong a, .tabla-detalles td strong a{
     text-decoration: none;
     color: var(--color-azul);
 }
@@ -537,4 +549,11 @@ footer{
     color: white;
 }
 
+.subtotal .float-left{
+    width: 50%;
+}
+
+.subtotal .float-right{
+    width: 50%;
+}
 
