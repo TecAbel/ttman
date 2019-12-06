@@ -14,7 +14,7 @@
     <div class="barra">
         <div class="contenedor clearfix">
             <div class="logo-nav">
-                <a href="../index.html">
+                <a href="../index">
                     <img src="../img/logo-pequeno.png" alt="TTMAN">
                 </a>
             </div>
