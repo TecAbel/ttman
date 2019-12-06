@@ -24,7 +24,7 @@
                 <img src="img/logo.png" alt="ttman">
             </div>
             <div class="contenedor-btns">
-                <a href="app/actividades.html" class="btn primario">Entrar</a>
+                <a href="app/empleadores" class="btn primario">Entrar</a>
                 <a href="#contacto" class="btn secundario">Contacto</a>
             </div>
         </div>

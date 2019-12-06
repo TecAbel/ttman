@@ -1,36 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/estilos.css">
-    <link href="https://fonts.googleapis.com/css?family=Courgette|Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    <title>TTMAN | actividades</title>
-</head>
-<body>
-    <div class="barra">
-        <div class="contenedor clearfix">
-            <div class="logo-nav">
-                <a href="../index.html">
-                    <img src="../img/logo-pequeno.png" alt="TTMAN">
-                </a>
-            </div>
-
-            <div class="menu-movil">
-                <i class="fas fa-bars"></i>
-            </div>
-
-            <div class="navegacion-principal">
-                <a href="#" class="activo">Actividades</a>
-                <a href="#">Empleadores</a>
-                <a href="#">Perfil</a>
-                <a href="#">Salir</a>
-            </div>
-        </div>
-    </div>
+<?php
+    include '../php/includes/header.php';
+?>
 
     <div class="contenedor contenedor-app clearfix">
         <h2>Ingrese la información que se le solicita.</h2>
@@ -68,7 +38,7 @@
                 </div>
                 <div class="campo w-100">
                     <button class="btn primario">Registrar</button>
-                    <a href="actividades-control.html" class="btn secundario">Regresar</a>
+                    <a href="actividades-control" class="btn secundario">Regresar</a>
                 </div>
             </form>
             </div>
@@ -76,7 +46,6 @@
         </div>
         
     </div>
-</body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="../js/main.js"></script>
-</html>
+<?php
+    include '../php/includes/footer.php';
+?>
