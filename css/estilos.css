@@ -388,7 +388,7 @@ input{
     background-color: white;
 }
 input:focus{
-    border: 2px solid var(--color-primario);
+    border: 3px solid var(--color-primario)!important;
 }
 
 

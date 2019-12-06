@@ -25,7 +25,7 @@
             <table class="tabla-actividades">
                 <thead>
                     <th>Fecha</th>
-                    <th>actividad</th>
+                    <th>Actividad</th>
                     <th>Detalle actividad</th>
                     <th>Monto</th>
                 </thead>
