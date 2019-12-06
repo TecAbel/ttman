@@ -24,7 +24,7 @@
             </div>
 
             <div class="navegacion-principal">
-                <a href="empleadores.html" class="activo">Empleadores</a>
+                <a href="empleadores" class="activo">Empleadores</a>
                 <a href="#">Perfil</a>
                 <a href="#">Salir</a>
             </div>
