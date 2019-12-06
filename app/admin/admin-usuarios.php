@@ -9,6 +9,8 @@
 ?>
     <div class="contenedor contenedor-app clearfix">
         <h1>Administrador de usuarios</h1>
+        
+        <h2>Agregar usuario</h2>
         <hr>
     </div>
 
@@ -44,6 +46,11 @@
                 </div>
             </form>
         </div>
+    </div>
+    <h2>Cuentas registradas</h2>
+    <hr>
+    <div class="contenedor tablas">
+
     </div>
 
 <?php
