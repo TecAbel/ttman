@@ -50,7 +50,23 @@
     <h2>Cuentas registradas</h2>
     <hr>
     <div class="contenedor tablas">
-
+        <table class="tabla-actividades">
+            <thead>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Cambiar contraseña</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Abelardo Aqui Arroyo</td>
+                    <td>abel1996abel@gmail.com</td>
+                    <td>
+                        <input type="text">
+                        <a href="" class="btn color-amarillo"><i class="fas fa-edit"></i> Cambiar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
 <?php
