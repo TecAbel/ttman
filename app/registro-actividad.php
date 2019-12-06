@@ -42,9 +42,7 @@
                 </div>
             </form>
             </div>
-           
         </div>
-        
     </div>
 <?php
     include '../php/includes/footer.php';
