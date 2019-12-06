@@ -3,7 +3,7 @@
 ?>
 
     <div class="contenedor contenedor-app clearfix">
-        <a href="empleadores.html" class="btn volver"><i class="fas fa-chevron-left"></i>Volver</a>
+        <a href="empleadores" class="btn volver"><i class="fas fa-chevron-left"></i>Volver</a>
         <h1>Control de actividades</h1>
         <h3>Carlos Sosa</h3>
         <hr>
