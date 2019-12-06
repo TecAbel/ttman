@@ -27,8 +27,10 @@ function validateForm() {
                 //swal(respuesta);
                 if(respuesta == true){
                     location.href = 'admin-usuarios';
-                }else if(respuesta == false){
-                    swal('');
+                }/*else if(respuesta==false){
+                    swal('Usuario o contraseña incorrectos','Intente de nuevo','error');
+                }*/else{
+                    swal('Usuario o contraseña incorrectos','Intente de nuevo','error');
                 }
             }
         });

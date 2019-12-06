@@ -24,7 +24,7 @@
             </div>
 
             <div class="navegacion-principal">
-                <a href="#">Salir</a>
+                <a href="destroy.php">Salir</a>
             </div>
         </div>
     </div>
