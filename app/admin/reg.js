@@ -62,7 +62,9 @@ if(document.getElementById('frmAdminUsers')){
                     if(response==true){
                        
                         document.getElementById('frmAdminUsers').reset();
-                        swal('Cuenta añadida','Ya puede hacer uso de esta cuenta','success');
+                        swal({title:'Cuenta añadida',text:'Ya puede hacer uso de esta cuenta',icon:'success'}).then(function(){
+                            location.reload();
+                        });
                        
                     }
                 }

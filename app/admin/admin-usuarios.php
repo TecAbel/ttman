@@ -1,5 +1,6 @@
 <?php
     include 'header-admin.php';
+    
     session_start();
     $usuario = $_SESSION['usuario'];
     $pase = $_SESSION['pase'];
@@ -57,14 +58,29 @@
                 <th>Cambiar contraseña</th>
             </thead>
             <tbody>
+                <?php
+                    try {
+                        require_once('../../php/config.php');
+                        $sql = "SELECT num_usuario,correo, nombre_user FROM usuarios ORDER BY nombre_user asc";
+                        $resultado = $conn->query($sql);
+                    } catch (Exception $th) {
+                        echo $th->getMessage();
+                    }
+                ?>
+
+                <?php
+                    while($cuenta = $resultado->fetch_assoc()){
+                        require_once('../../php/SED.php');?>
                 <tr>
-                    <td>Abelardo Aqui Arroyo</td>
-                    <td>abel1996abel@gmail.com</td>
+                    <td><?php echo $cuenta['nombre_user']?></td>
+                    <td><?php echo $cuenta['correo']?></td>
                     <td>
-                        <input type="text">
-                        <a href="" class="btn color-amarillo"><i class="fas fa-edit"></i> Cambiar</a>
+                        <a class="btn color-amarillo" href="actualizar-pase?<?php echo SED::encryption($cuenta['num_usuario'])?>"><i class="fas fa-edit"></i> Cambiar</a>
                     </td>
                 </tr>
+                <?php    }
+                ?>
+                
             </tbody>
         </table>
     </div>
