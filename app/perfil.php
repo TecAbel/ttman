@@ -24,12 +24,16 @@
                     <input type="tel" name="txtTelefono" id="txtTelefono">
                 </div>
                 <div class="campo">
-                    <label for="txtTelefono">CLABE:</label>
-                    <input class="color-verde" type="tel" name="txtTelefono" id="txtTelefono">
+                        <label for="txtRFC">RFC:</label>
+                        <input class="color-verde" type="tel" name="txtRFC" id="txtRFC">
+                    </div>
+                <div class="campo">
+                    <label for="txtClabe">CLABE:</label>
+                    <input class="color-verde" type="tel" name="txtClabe" id="txtClabe">
                 </div>
                 <div class="campo">
-                    <label for="txtTelefono">Banco:</label>
-                    <input class="color-verde" type="tel" name="txtTelefono" id="txtTelefono">
+                    <label for="txtBanco">Banco:</label>
+                    <input class="color-verde" type="tel" name="txtBanco" id="txtBanco">
                 </div>
                 <div class="campo w-100">
                     <input type="submit" class="btn primario" value="Actualizar info">
