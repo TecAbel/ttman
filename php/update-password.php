@@ -2,7 +2,7 @@
     if(isset($_POST['txtPase1']) && isset($_POST['txtId'])){
         require('SED.php');
         $id =$_POST['txtId'];
-        $nuevoPase = $_POST['txtPase1'];
+        $nuevoPase = filter_var($_POST['txtPase1'], FILTER_SANITIZE_STRING);
         $paseEn = password_hash($nuevoPase, PASSWORD_DEFAULT);
         try {
             require_once('config.php');
