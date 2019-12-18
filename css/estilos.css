@@ -24,8 +24,11 @@ html{
     }
 
 body{
-    height: 100%;
+    
     font-family: var(--fuente-cuerpo);
+}
+body, html{
+    height: 100%!important;
 }
 
 body#index{

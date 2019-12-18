@@ -15,7 +15,7 @@
         <hr>
     </div>
 
-    <div class="contenedor contenedor-app bg-gris">
+    <div class="contenedor  bg-gris">
         <div class="contenedor-campos">
             <form id="frmAdminUsers"  method="post" onsubmit="javascript: return false;">
                 <div class="campo w-100">
@@ -63,6 +63,7 @@
                         require_once('../../php/config.php');
                         $sql = "SELECT num_usuario,correo, nombre_user FROM usuarios ORDER BY nombre_user asc";
                         $resultado = $conn->query($sql);
+                        $conn->close();
                     } catch (Exception $th) {
                         echo $th->getMessage();
                     }
@@ -75,7 +76,7 @@
                     <td><?php echo $cuenta['nombre_user']?></td>
                     <td><?php echo $cuenta['correo']?></td>
                     <td>
-                        <a class="btn color-amarillo" href="actualizar-pase?<?php echo SED::encryption($cuenta['num_usuario'])?>"><i class="fas fa-edit"></i> Cambiar</a>
+                        <a class="btn color-amarillo" href="../actualizar-password?sEc=<?php echo SED::encryption($cuenta['num_usuario'])?>"><i class="fas fa-edit"></i> Cambiar</a>
                     </td>
                 </tr>
                 <?php    }
