@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/estilos.css">
     <link href="https://fonts.googleapis.com/css?family=Courgette|Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    <title>TTMAN | actividades</title>
+    <title>TTMAN</title>
 </head>
 <body>
     <div class="barra">

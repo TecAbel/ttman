@@ -13,11 +13,11 @@ if(document.getElementById('frmCambioPass')){
             },
             messages:{
                 txtPase:{
-                    required: 'Vacío <i class="fas fa-exclamation-circle color-amarillo"></i>'
+                    required: 'Vacío <i class="fas fa-exclamation-circle obligatorio"></i>'
                 },
                 txtPase1:{
-                    required:'Vacío <i class="fas fa-exclamation-circle color-amarillo"></i>',
-                    equalTo: 'No coincide <i class="fas fa-exclamation-circle color-amarillo"></i>'
+                    required:'Vacío <i class="fas fa-exclamation-circle obligatorio"></i>',
+                    equalTo: 'No coincide <i class="fas fa-exclamation-circle obligatorio"></i>'
                 }
             }
         });

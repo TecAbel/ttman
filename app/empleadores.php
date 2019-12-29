@@ -10,6 +10,9 @@
 
     <div class="contenedor">
         <div class="contenedor-empleadores">
+        <div class="empleador-cuadro ">
+                <a href="nuevo-empleador"><button class="boton-circular verde"><p><i class="fas fa-plus"></i></p></button></a>
+            </div>
             <div class="empleador-cuadro ">
                 <a href="actividades-control"><button class="boton-circular"><i class="fas fa-user-tie"></i><p>Carlos Sosa</p></button></a>
             </div>

@@ -109,6 +109,14 @@ hr{
     color: white;
     transition: .4s ease-in-out;
 }
+.btn.verde{
+    background-color: var(--color-verde);
+    color: white;
+    transition: .4s ease-in-out;
+}
+.btn.verde:hover{
+    background-color: rgb(24, 92, 24);
+}
 .btn.azul:hover{
     background-color: #0968ce;
 }
@@ -452,6 +460,9 @@ input:focus{
     width: 100%;
     height: 100%;
 }
+.empleador-cuadro .boton-circular.verde{
+    background-color: var(--color-verde)!important;
+}
 
 .empleador-cuadro .boton-circular:hover{
     cursor: pointer;
@@ -601,6 +612,10 @@ input:focus{
 }
 .campo label{
     width: 100%;
+}
+
+.obligatorio{
+    color: var(--color-foot)!important;
 }
 
 

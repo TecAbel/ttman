@@ -6,11 +6,11 @@
 
         try {
             require_once('config.php');
-            $sql = "SELECT pase FROM usuarios WHERE correo = ?";
+            $sql = "SELECT num_usuario,pase FROM usuarios WHERE correo = ?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param('s', $correo);
             $stmt->execute();
-            $stmt->bind_result($paseDb);
+            $stmt->bind_result($llave,$paseDb);
             $stmt->fetch();
             $stmt->close();
             $conn->close();
@@ -23,6 +23,7 @@
                 $msg = true;
                 session_start();
                 $_SESSION['correo'] = $correo;
+                $_SESSION['llave'] = $llave;
             }
             else{
                 $msg = false;
