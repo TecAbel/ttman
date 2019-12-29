@@ -8,6 +8,7 @@
     --color-amarillo: #ffc107;
     --color-azul: #00344d;
     --color-negro: #343a40;
+    --color-azul-boot: #007bff;
 
     --fuente-titulos: 'Courgette', cursive;
     --fuente-cuerpo:'Montserrat', sans-serif;
@@ -46,6 +47,9 @@ hr{
     width: 90%;
     border-bottom: 1px solid var(--color-primario);
     margin: 10px auto;
+}
+.oculto{
+    display: none!important;
 }
 .color-verde{
     color: var(--color-verde);
@@ -99,6 +103,14 @@ hr{
     background-color: var(--color-primario);
     color: white;
     transition: .4s ease-in-out;
+}
+.btn.azul{
+    background-color: var(--color-azul-boot);
+    color: white;
+    transition: .4s ease-in-out;
+}
+.btn.azul:hover{
+    background-color: #0968ce;
 }
 .btn.primario:hover{
     background-color: rgb(197, 99, 28);

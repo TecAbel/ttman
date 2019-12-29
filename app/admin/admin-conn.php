@@ -1,8 +1,8 @@
 <?php
     //var_dump($_POST);
     if($_POST){
-        $usuario = $_POST['txtUsuario'];
-        $pase = $_POST['txtPase'];
+        $usuario = filter_var($_POST['txtUsuario'], FILTER_SANITIZE_STRING) ;
+        $pase = filter_var($_POST['txtPase'], FILTER_SANITIZE_STRING);
         $conn = new mysqli('localhost', $usuario, $pase,'ttman');
         if($conn->connect_error){
             $mensaje = $conn->connect_error;

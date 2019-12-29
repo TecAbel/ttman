@@ -1,3 +1,4 @@
+<?php $paginaActual = $_SERVER['REQUEST_URI']; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +15,7 @@
     <div class="barra">
         <div class="contenedor clearfix">
             <div class="logo-nav">
-                <a href="../index">
+                <a href="../">
                     <img src="../img/logo-pequeno.png" alt="TTMAN">
                 </a>
             </div>
@@ -24,9 +25,19 @@
             </div>
 
             <div class="navegacion-principal">
-                <a href="empleadores" class="activo">Empleadores</a>
-                <a href="perfil">Perfil</a>
-                <a href="#">Salir</a>
+                <?php 
+                if($paginaActual == '/ttman/app/' or $paginaActual == '/ttman/app/index'){ 
+                    echo '<a href="../">Salir</a>';
+                }  
+                else{
+                    echo '<a href="empleadores" class="activo">Empleadores</a>
+                        <a href="perfil">Perfil</a> 
+                        <a href="../">Salir</a>';
+                }  
+                ?>
+                
             </div>
         </div>
     </div>
+
+    
