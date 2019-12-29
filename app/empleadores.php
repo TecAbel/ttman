@@ -9,28 +9,38 @@
     </div>
 
     <div class="contenedor">
+        <?php
+        session_start();
+        $llave  = $_SESSION['llave'];
+            try {
+                require_once('../php/config.php');
+                $sql = "SELECT num_emp,nombre_emp FROM empleadores WHERE num_usuario = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param('i', $llave);
+                $stmt->execute();
+                $stmt->bind_result($emp,$nombreEmpleador);
+            } catch (Exception $th) {
+                echo $th->getMessage();
+            }
+        ?>
         <div class="contenedor-empleadores">
-        <div class="empleador-cuadro ">
+            <div class="empleador-cuadro ">
                 <a href="nuevo-empleador"><button class="boton-circular verde"><p><i class="fas fa-plus"></i></p></button></a>
             </div>
-            <div class="empleador-cuadro ">
-                <a href="actividades-control"><button class="boton-circular"><i class="fas fa-user-tie"></i><p>Carlos Sosa</p></button></a>
-            </div>
-
-            <div class="empleador-cuadro ">
-                <a href="">
-                    <button class="boton-circular"><i class="fas fa-user-tie"></i><p>Alfredo Gutiérrez</p></button>
-                </a>
-            </div>
-
-            <div class="empleador-cuadro ">
-                <button class="boton-circular"><i class="fas fa-user-tie"></i><p>Katia Murguía</p></button>
-            </div>
-            <div class="empleador-cuadro ">
-                <button class="boton-circular"><i class="fas fa-user-tie"></i><p>Cristina</p></button>
-            </div>
+    
+            <?php
+                while($stmt->fetch()){  
+                    require_once('../php/SED.php');
+                    $empEnc = SED::encryption($emp); ?>
+                <div class="empleador-cuadro ">
+                    <a href="actividades-control?emp=<?php echo $empEnc?>"><button class="boton-circular"><i class="fas fa-user-tie"></i><p><?php echo $nombreEmpleador?></p></button></a>
+                </div>
+            <?php    }
+            ?>
         </div>
     </div>
 <?php
+    $stmt->close();
+    $conn->close();
     include '../php/includes/footer.php';
 ?>
