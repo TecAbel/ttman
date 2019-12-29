@@ -32,7 +32,7 @@
                 else{
                     echo '<a href="empleadores" class="activo">Empleadores</a>
                         <a href="perfil">Perfil</a> 
-                        <a href="../">Salir</a>';
+                        <a href="../php/destroy.php">Salir</a>';
                 }  
                 ?>
                 

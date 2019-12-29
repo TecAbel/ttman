@@ -1,5 +1,11 @@
 <?php
     include '../php/includes/header.php';
+    session_start();
+    if(!isset($_SESSION['llave'])){
+        header('Location: ../');
+    }
+    require_once('../php/SED.php');
+    $llaveEnc = SED::encryption($_SESSION['llave']);
 ?>
 
     <div class="contenedor contenedor-app clearfix">
@@ -40,6 +46,9 @@
                 </div>
                 
             </form>
+            <div class="campo w-100">
+                    <a href="actualizar-password.php?sEc=<?php echo $llaveEnc ?>"><button class="btn azul">Cambiar contraseña</button></a>
+                </div>
         </div>
     </div>
 

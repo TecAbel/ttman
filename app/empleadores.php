@@ -1,5 +1,9 @@
 <?php
     include '../php/includes/header.php';
+    session_start();
+    if(!isset($_SESSION['llave'])){
+        header('Location: ../');
+    }
 ?>
 
     <div class="contenedor contenedor-app clearfix">
@@ -10,7 +14,6 @@
 
     <div class="contenedor">
         <?php
-        session_start();
         $llave  = $_SESSION['llave'];
             try {
                 require_once('../php/config.php');
