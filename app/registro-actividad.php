@@ -41,7 +41,7 @@
                     <label for="txtTransporte">Transporte: $</label>
                     <input type="number" id="txtTransporte" name="txtTransporte" class="color-verde">
                 </div>
-                <input type="hidden" name="txtEmp" value="<?php echo $empEnc ?>">
+                <input type="hidden" id="txtEmp" name="txtEmp" value="<?php echo $empEnc ?>">
                 <div class="campo w-100">
                     <input type="submit" id="btnRegistrar" class="btn verde" value="Registrar Actividad">
                     <a href="actividades-control?emp=<?php echo $empEnc?>" class="btn azul">Regresar</a>

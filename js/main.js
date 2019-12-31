@@ -166,6 +166,7 @@ function validateFrmRegistroActividad(frm) {
         var actividad = $("#txtActividad").val();
         var detalle = $("#txtDetalle").val();
         var transporte = $("#txtTransporte").val();
+        var empEnc = $("#txtEmp").val();
         swal({
             title: "Verifica tu información",
             text: `Fecha: ${fecha}\n
@@ -183,7 +184,21 @@ function validateFrmRegistroActividad(frm) {
                 url: "../php/registro-actividad.php",
                 data: frm.serialize(),
                 success: function (response) {
-                    swal(response);
+                    if(response == true){
+                        swal({
+                            title: "Actividad registrada",
+                            text: "Su actividad fue registrada exitosamente",
+                            icon: "success"
+                        }).then(()=>{
+                            location.href = `actividades-control?emp=${empEnc}`;
+                        });
+                    }else{
+                        swal({
+                            title: "Hubo un error",
+                            text: "Su actividad no se registró de forma correcta, vuelva a intentar",
+                            icon: "error"
+                        });
+                    }
                 }
             });
           });
