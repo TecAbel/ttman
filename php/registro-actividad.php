@@ -15,7 +15,7 @@
 
             /* Cálculo de horas redondeo a partir de media hora */
 
-            $diferencia = strtotime($inicio) - strtotime($salida);
+            $diferencia = strtotime($salida) - strtotime($inicio);
             $horas = $diferencia / 3600;
             $horas_final = round($horas, 0, PHP_ROUND_HALF_UP);
 
@@ -34,26 +34,73 @@
                 $stmtActividad->bind_param('s',$actividad);
                 $stmtActividad->execute();
                 $stmtActividad->close();
-                $conn->close();
+                #$conn->close();
             } catch (Exception $th) {
-                echo $th->getMessage();
+                $msg = $th->getMessage();
             }
-            echo $actividad;
+
             try {
                  /*Registro del cálculo */
                  require_once('config.php');
                  $sqlCalculo = "INSERT INTO calculos(num_usuario,num_emp,num_actividad,fecha,hora_ent,hora_sal,horas_tra,descripcion,transporte)
-                 VALUES(?, ?,(SELECT num_actividad FROM actividades WHERE nombre_act = '$actividad'),?,?,?,?,?,?);";
+                 VALUES(?, ?,(SELECT num_actividad FROM actividades WHERE nombre_act = ?),?,?,?,?,?,?);";
  
                  $stmtCalculo = $conn->prepare($sqlCalculo);
-                 $stmtCalculo->bind_param('iisssisi',$llave,$num_emp,$fecha,$inicio,$salida,$horas_final,$detalle,$transporte);
+                 $stmtCalculo->bind_param('iissssisi',$llave,$num_emp,$actividad,$fecha,$inicio,$salida,$horas_final,$detalle,$transporte);
                  $stmtCalculo->execute();
                  $stmtCalculo->close();
-                 $conn->close();
+                 #$conn->close();
             } catch (Exception $th) {
                 echo $th->getMessage();
             }
+            /*Cálculo de subtotal */
+            try {
+                require_once('config.php');
+                $sqlSubtotal="
+                UPDATE calculos 
+                SET subtotal_cal =  (
+                    horas_tra*(
+                    SELECT cuota 
+                    FROM empleadores 
+                    where num_usuario = ?
+                    AND num_emp = ?
+                    )
+                )
+                WHERE calculos.num_emp = ? AND calculos.num_usuario = ?;
+                ";
+                $stmtSubtotal = $conn->prepare($sqlSubtotal);
+                $stmtSubtotal->bind_param('iiii',$llave,$num_emp,$num_emp,$llave);
+                $stmtSubtotal->execute();
+                $stmtSubtotal->close();
+            } catch (Exception $th) {
+                $msg = $th->getMessage();
+            }
+            /* Cálculo del total */
+            try {
+                require_once('config.php');
+                $sqlTotal = "
+                    UPDATE calculos
+                    SET total_cal = (
+                        subtotal_cal + transporte
+                    )
+                    WHERE calculos.num_emp = ? AND calculos.num_usuario = ?;
+                ";
+                $stmtTotal = $conn->prepare($sqlTotal);
+                $stmtTotal->bind_param('ii', $num_emp,$llave);
+                $stmtTotal->execute();
+                $stmtTotal->close();
+                $conn->close();
+            } catch (Exception $th) {
+                $msg = $th->getMessage();
+            }
+            $msg = true;
+        }else{
+            $msg = "Vuelva a intentarlo";
         }
+    }else{
+        $msg = "Vuelva a iniciar sesión";
     }
+
+    echo $msg;
 
 ?>
