@@ -87,9 +87,9 @@ hr{
   clear: both;
 }
 
-.btn{
+.btn, input.btn{
     text-decoration: none;
-    padding: 10px;
+    padding: 10px!important;
     display: inline-block;
     width: 100%;
     text-align: center;
@@ -410,7 +410,7 @@ input{
     border: 2px solid var(--color-secundario);
     background-color: white;
 }
-input:focus{
+input:focus, textarea:focus{
     border: 3px solid var(--color-primario)!important;
 }
 

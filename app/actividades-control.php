@@ -1,10 +1,11 @@
 <?php
     include '../php/includes/header.php';
+    $empEnc = $_GET['emp'];
 ?>
 
     <div class="contenedor contenedor-app clearfix">
         <a href="empleadores" class="btn volver"><i class="fas fa-chevron-left"></i>Volver</a>
-        <h1>Control de actividades</h1>
+        <h2>Control de actividades</h2>
         <h3>Carlos Sosa</h3>
         <hr>
         <p class="centrado"><small>Aquí podrás acceder a tus actividades registradas con este empleador e interactuar con dicha información.</small>
@@ -16,7 +17,7 @@
                 Total al momento <strong><span class="color-verde">$1080</span></strong>
             </div>
             <div class="btns-archivo">
-                <a href="registro-actividad"><i class="color-verde fas fa-plus-circle"></i></a>
+                <a href="registro-actividad?emp=<?php echo $empEnc ?>"><i class="color-verde fas fa-plus-circle"></i></a>
                 <a href="#"><i class="far fa-file-pdf"></i></a>
             </div>
         </div>

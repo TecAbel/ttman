@@ -14,6 +14,14 @@
             validateFrmNewEmpleador(frm);
         });
     }
+    
+    if(document.getElementById('frmRegistroActividad')){
+        const frm = $("#frmRegistroActividad");
+        $("#btnRegistrar").click(function (e) { 
+            e.preventDefault();
+            validateFrmRegistroActividad(frm);
+        });
+    }
 })();
 
 $(function(){
@@ -108,5 +116,78 @@ function validateFrmNewEmpleador(frm) {
                 //alert(response);
             }
         });
+    }
+}
+
+/* REGISTRO DE ACTIVIDADES */
+
+function validateFrmRegistroActividad(frm) {
+    var validator = frm.validate({
+        rules: {
+            txtFecha:{
+                required: true
+            },
+            txtInicio:{
+                required:true
+            },
+            txtSalida:{
+                required: true
+            },
+            txtActividad:{
+                required: true
+            },
+            txtDetalle:{
+                required: true
+            }
+        },
+        messages:{
+            txtFecha:{
+                required: 'Vacío <i class="fas fa-exclamation-circle obligatorio"></i>'
+            },
+            txtInicio:{
+                required:'Vacío <i class="fas fa-exclamation-circle obligatorio"></i>'
+            },
+            txtSalida:{
+                required: 'Vacío <i class="fas fa-exclamation-circle obligatorio"></i>'
+            },
+            txtActividad:{
+                required: 'Vacío <i class="fas fa-exclamation-circle obligatorio"></i>'
+            },
+            txtDetalle:{
+                required: 'Vacío <i class="fas fa-exclamation-circle obligatorio"></i>'
+            }
+        }
+    });
+
+    if(validator.form()){
+        var fecha = $("#txtFecha").val();
+        var inicio = $("#txtInicio").val();
+        var salida = $("#txtSalida").val();
+        var actividad = $("#txtActividad").val();
+        var detalle = $("#txtDetalle").val();
+        var transporte = $("#txtTransporte").val();
+        swal({
+            title: "Verifica tu información",
+            text: `Fecha: ${fecha}\n
+                   Inicio: ${inicio}\n
+                   Salida: ${salida}\n 
+                   Actividad: ${actividad}\n 
+                   Detalle: ${detalle}\n
+                   Transporte: $${transporte} ` ,
+            icon: "warning",
+            buttons: true,
+          })
+          .then(() => {
+            $.ajax({
+                type: "post",
+                url: "../php/registro-actividad.php",
+                data: frm.serialize(),
+                success: function (response) {
+                    swal(response);
+                }
+            });
+          });
+
+        /**/
     }
 }

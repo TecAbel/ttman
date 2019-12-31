@@ -1,31 +1,36 @@
 <?php
     include '../php/includes/header.php';
+    $empEnc = $_GET['emp'];
+    
+    $fecha = date('Y-m-d');
+    
 ?>
 
     <div class="contenedor contenedor-app clearfix">
+    <a href="actividades-control?emp=<?php echo $empEnc?>" class="btn volver"><i class="fas fa-chevron-left"></i>Volver</a>
         <h2>Ingrese la información que se le solicita.</h2>
         <hr>
         <div class="seccion-reporte bg-gris">
             <div class="contenedor-campos">
-            <form action="" method="post">
+            <form onsubmit="javascript: return false;" id="frmRegistroActividad" method="post">
                 <div class="campo">
                     <label for="txtFecha">Fecha:</label>
-                    <input type="date" id="txtFecha">
+                    <input type="date" value=<?php echo $fecha ?> id="txtFecha" name="txtFecha">
                 </div>
                 <div class="campo">
                     <label for="txtInicio">Inicio:</label>
-                    <input type="time" id="txtInicio">
+                    <input type="time" id="txtInicio" name="txtInicio">
                 </div>
                 <div class="campo">
                     <label for="txtSalida">Salida:</label>
-                    <input type="time" id="txtSalida">
+                    <input type="time" id="txtSalida" name="txtSalida">
                 </div>
                 <div class="campo">
-                    <label for="txtActividad">Actividad:</label>
-                    
-                    <select name="txtActividad" id="">
-                        <option value="1">Servicio</option>
-                    </select>
+                    <label for="txtActividad" class="obligatorio">Actividad:</label>
+                    <input type="text" name="txtActividad" list="actividadesRegistradas" id="txtActividad" autocomplete="off">
+                    <datalist id="actividadesRegistradas">
+                        <option value="Servicio">Servicio</option>
+                    </datalist>
                 </div>
                 <div class="campo w-100">
                     <label for="txtDetalle">Detalle actividad:</label>
@@ -34,11 +39,12 @@
                 </div>
                 <div class="campo">
                     <label for="txtTransporte">Transporte: $</label>
-                    <input type="number" class="color-verde">
+                    <input type="number" id="txtTransporte" name="txtTransporte" class="color-verde">
                 </div>
+                <input type="hidden" name="txtEmp" value="<?php echo $empEnc ?>">
                 <div class="campo w-100">
-                    <button class="btn primario">Registrar</button>
-                    <a href="actividades-control" class="btn secundario">Regresar</a>
+                    <input type="submit" id="btnRegistrar" class="btn verde" value="Registrar Actividad">
+                    <a href="actividades-control?emp=<?php echo $empEnc?>" class="btn azul">Regresar</a>
                 </div>
             </form>
             </div>
