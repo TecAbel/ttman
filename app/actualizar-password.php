@@ -3,6 +3,7 @@
 ?>
 
 <div class="contenedor contenedor-app clearfix">
+    <a href="perfil" class="btn volver"><i class="fas fa-chevron-left"></i>Volver</a>
     <?php 
         if(isset($_GET['sEc'])){
             include('../php/SED.php');

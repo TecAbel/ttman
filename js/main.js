@@ -22,6 +22,14 @@
             validateFrmRegistroActividad(frm);
         });
     }
+
+    if(document.getElementById('frmPerfil')){
+        const frm = $("#frmPerfil");
+        $("#btnActualizar").click(function (e) { 
+            e.preventDefault();
+            validateFrmPerfil(frm);
+        });
+    }
 })();
 
 $(function(){
@@ -118,6 +126,75 @@ function validateFrmNewEmpleador(frm) {
         });
     }
 }
+
+/**
+ * Cambios del perfil
+ * 
+ */
+function validateFrmPerfil(frm) {
+    var validator = frm.validate({
+        rules:{
+            txtTelefono:{
+                digits: true,
+                minlength: 10,
+                maxlength: 10
+            },
+            txtRFC:{
+                minlength: 13,
+                maxlength: 10
+            },
+            txtClabe:{
+                minlength: 18,
+                maxlength:18
+            },
+            txtBanco:{
+                minlength:5
+            }
+        },
+        messages:{
+            txtTelefono:{
+                digits: 'Solo números <i class="fas fa-exclamation-circle obligatorio"></i>',
+                minlength: 'mín 10 <i class="fas fa-exclamation-circle obligatorio"></i>',
+                maxlength: 'máx 10 <i class="fas fa-exclamation-circle obligatorio"></i>'
+            },
+            txtRFC:{
+                minlength: 'mín 13 <i class="fas fa-exclamation-circle obligatorio"></i>',
+                maxlength: 'máx 13 <i class="fas fa-exclamation-circle obligatorio"></i>'
+            },
+            txtClabe:{
+                minlength: 'mín 18 <i class="fas fa-exclamation-circle obligatorio"></i>',
+                maxlength: 'máx 18 <i class="fas fa-exclamation-circle obligatorio"></i>'
+            },
+            txtBanco:{
+                minlength: 'mín 5 <i class="fas fa-exclamation-circle obligatorio"></i>'
+            }
+        }
+    });
+
+    if(validator.form()){
+        $.ajax({
+            type: "post",
+            url: "../php/update-perfil.php",
+            data: frm.serialize(),
+            success: function (response) {
+                if(response == true){
+                    swal({
+                        title: "Perfil actualizado",
+                        text: "Tu información se ha actualizado exitosamente",
+                        icon: "success"
+                    });
+                }else{
+                    swal({
+                        title: "Hubo un error",
+                        text: "Tu información está intacta. Vuelve a intentarlo",
+                        icon: "error"
+                    });
+                }
+            }
+        });
+    }
+}
+
 
 /* REGISTRO DE ACTIVIDADES */
 
