@@ -1,5 +1,10 @@
 <?php
     include '../php/includes/header.php';
+    session_start();
+    if(!isset($_SESSION['llave'])){
+        header('Location: ../');
+    }
+
     $empEnc = $_GET['emp'];
     
     $fecha = date('Y-m-d');
@@ -29,7 +34,26 @@
                     <label for="txtActividad" class="obligatorio">Actividad:</label>
                     <input type="text" name="txtActividad" list="actividadesRegistradas" id="txtActividad" autocomplete="off">
                     <datalist id="actividadesRegistradas">
-                        <option value="Servicio">Servicio</option>
+                        <?php 
+                            try {
+                                $llave = $_SESSION['llave'];
+                                require_once('../php/config.php');
+                                $sql = "SELECT nombre_act 
+                                        FROM actividades
+                                        WHERE num_usuario = ?";
+                                $stmt = $conn->prepare($sql);
+                                $stmt->bind_param('i',$llave);
+                                $stmt->execute();
+                                $stmt->bind_result($actividad);
+                            } catch (Exception $th) {
+                                $error = $th->getMessage();
+                                echo '<option value="'.$error.'">'.$error.'</option>';
+                            }
+
+                            while($stmt->fetch()){
+                                echo '<option value="'.$actividad.'">'.$actividad.'</option>';
+                            }
+                        ?>
                     </datalist>
                 </div>
                 <div class="campo w-100">
@@ -51,5 +75,7 @@
         </div>
     </div>
 <?php
+    $stmt->close();
+    $conn->close();
     include '../php/includes/footer.php';
 ?>
