@@ -55,7 +55,7 @@
                         require_once('../php/config.php');
                         require_once('../php/SED.php');
                         $num_emp = SED::decryption($empEnc);
-                        $sql = "SELECT fecha,actividades.num_actividad, hora_ent, hora_sal, descripcion, transporte, subtotal_cal, total_cal 
+                        $sql = "SELECT num_cal,fecha,actividades.num_actividad, hora_ent, hora_sal, descripcion, transporte, subtotal_cal, total_cal 
                         FROM calculos 
                         INNER JOIN actividades
                         ON calculos.num_actividad = actividades.num_actividad
@@ -63,15 +63,16 @@
                         $stmt = $conn->prepare($sql);
                         $stmt->bind_param('ii', $llave, $num_emp);
                         $stmt->execute();
-                        $stmt->bind_result($fecha,$actividad,$hora_ent,$hora_sal,$detalle, $transporte, $subtotal,$total);
+                        $stmt->bind_result($num_cal,$fecha,$actividad,$hora_ent,$hora_sal,$detalle, $transporte, $subtotal,$total);
                     } catch (Exception $th) {
                         echo $th->getMessae();
                     }
                     while($stmt->fetch()){
                         $fecha_format = date_create($fecha);
+                        $num_cal_enc = SED::encryption($num_cal);
                         ?>
                         <tr>
-                            <td><strong><a href=""><?php echo date_format($fecha_format, 'd/m/y')?></a></strong></td>
+                            <td><strong><a href="editar-actividad?act=<?php echo $num_cal_enc ?>"><?php echo date_format($fecha_format, 'd/m/y')?></a></strong></td>
                             <td><?php echo $actividad?></td>
                             <td><?php echo $detalle?></td>
                             <td class="color-verde">$<?php echo $subtotal?></td>
@@ -125,7 +126,7 @@
                         $fecha_format = date_create($fecha);
                         ?>
                         <tr>
-                            <td><strong><a href=""><?php echo date_format($fecha_format, 'd/m/y') ?></a></strong></td>
+                            <td><strong><?php echo date_format($fecha_format, 'd/m/y') ?></strong></td>
                             <td><?php echo $hora_ent ?></td>
                             <td><?php echo $hora_sal ?></td>
                             <td class="color-verde">$<?php echo $transporte ?></td>
