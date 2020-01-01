@@ -324,8 +324,7 @@ hr{
 
 .contenedor{
     max-width: 1000px;
-    margin: 0 auto;
-    margin-bottom: 20px;
+    margin: 0 auto 20px auto;
 }
 
 .contenedor-index{
@@ -532,6 +531,14 @@ input:focus, textarea:focus{
 
 .fa-file-pdf{
     color: #FF0000;
+}
+
+.nota-der{
+    text-align: right;
+    float: right;
+    width: 50%;
+    font-size: .5em;
+    padding: 5px;
 }
 
 /*

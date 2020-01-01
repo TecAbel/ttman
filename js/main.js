@@ -31,6 +31,14 @@
         });
     }
 
+    if(document.getElementById('frmUpdateCalculo')){
+        const frm = $("#frmUpdateCalculo");
+        $("#btnActividadUpdate").click(function (e) { 
+            e.preventDefault();
+            validateFrmUpdateCalculo(frm);
+        });
+    }
+
     if(document.getElementById('txtSubtotal')){
         const filasPrincipal = document.querySelectorAll('#tablaPrincipal tbody tr');
         const filasDetalles = document.querySelectorAll('#tablaDetalles tbody tr');
@@ -311,5 +319,46 @@ function validateFrmRegistroActividad(frm) {
           });
 
         /**/
+    }
+}
+
+/*
+ * ACTUALIZAR CALCULO
+ */
+function validateFrmUpdateCalculo(frm){
+    var validator = frm.validate({
+        rules:{
+            txtInicio:{
+                required: true
+            },
+            txtSalida:{
+                required: true
+            },
+            txtDetalle:{
+                required: true
+            }
+        },
+        messages:{
+            txtInicio:{
+                required: 'Vacío <i class="fas fa-exclamation-circle obligatorio"></i>'
+            },
+            txtSalida:{
+                required: 'Vacío <i class="fas fa-exclamation-circle obligatorio"></i>'
+            },
+            txtDetalle:{
+                required: 'Vacío <i class="fas fa-exclamation-circle obligatorio"></i>'
+            }
+        }
+    });
+
+    if(validator.form()){
+        $.ajax({
+            type: "post",
+            url: "../php/update-calculo.php",
+            data: frm.serialize(),
+            success: function (response) {
+                swal(response);
+            }
+        });
     }
 }

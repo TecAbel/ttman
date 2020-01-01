@@ -149,5 +149,6 @@
          </div>
     </div>
 <?php
+$conn->close();
     include '../php/includes/footer.php';
 ?>
