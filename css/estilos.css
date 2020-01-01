@@ -128,9 +128,12 @@ hr{
     color: black;
     text-align: center;
     margin: 5px;
-    width: 150px;
+    width: 120px;
 }
 
+.btn.volver.der{
+    float: right;
+}
 .btn.secundario{
     background-color: var(--color-secundario);
     color: black;
