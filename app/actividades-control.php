@@ -1,5 +1,10 @@
 <?php
     include '../php/includes/header.php';
+    session_start();
+    if(!isset($_SESSION['llave']) or !isset($_GET['emp'])){
+        header('Location: ../');
+    }
+    $llave = $_SESSION['llave'];
     $empEnc = $_GET['emp'];
 ?>
 
@@ -7,7 +12,21 @@
         <a href="empleadores" class="btn volver"><i class="fas fa-chevron-left"></i>Volver</a>
         <a href="#" class="btn volver der"><i class="fas fa-folder-open"></i>Historial</a>
         <h2>Control de actividades</h2>
-        <h3>Carlos Sosa</h3>
+        <?php try {
+            require_once('../php/config.php');
+            require_once('../php/SED.php');
+            $num_emp = SED::decryption($empEnc);
+            $sql = "SELECT nombre_emp FROM empleadores WHERE num_emp = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('i',$num_emp);
+            $stmt->execute();
+            $stmt->bind_result($nombreEmp);
+            $stmt->fetch();
+            $stmt->close();
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }?>
+        <h3><?php echo $nombreEmp ?> </h3>
         <hr>
         <p class="centrado"><small>Aquí podrás acceder a tus actividades registradas con este empleador e interactuar con dicha información.</small>
         <p class="centrado"><span class="color-amarillo">NOTA:</span><small>Dando clic en la fecha de una actividad podrás editarla o eliminarla.</small></p>
@@ -32,24 +51,36 @@
                     <th>Monto</th>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><strong><a href="">04/12/19</a></strong></td>
-                        <td>Desarrollo</td>
-                        <td>Pruebas de desarrollo en TTMAN</td>
-                        <td class="color-verde">$300</td>
-                    </tr>
-                    <tr>
-                        <td><strong><a href="">04/12/19</a></strong></td>
-                        <td>Desarrollo</td>
-                        <td>Pruebas de desarrollo en TTMAN</td>
-                        <td class="color-verde">$300</td>
-                    </tr>
+                    <?php try {
+                        require_once('../php/config.php');
+                        require_once('../php/SED.php');
+                        $num_emp = SED::decryption($empEnc);
+                        $sql = "SELECT fecha,actividades.num_actividad, hora_ent, hora_sal, descripcion, transporte, subtotal_cal, total_cal 
+                        FROM calculos 
+                        INNER JOIN actividades
+                        ON calculos.num_actividad = actividades.num_actividad
+                        WHERE calculos.num_usuario = ? AND calculos.num_emp = ?";
+                        $stmt = $conn->prepare($sql);
+                        $stmt->bind_param('ii', $llave, $num_emp);
+                        $stmt->execute();
+                        $stmt->bind_result($fecha,$actividad,$hora_ent,$hora_sal,$detalle, $transporte, $subtotal,$total);
+                    } catch (Exception $th) {
+                        echo $th->getMessae();
+                    }
+                    while($stmt->fetch()){
+                        $fecha_format = date_create($fecha);
+                        ?>
                         <tr>
-                        <td><strong><a href="">04/12/19</a></strong></td>
-                        <td>Desarrollo</td>
-                        <td>Pruebas de desarrollo en TTMAN</td>
-                        <td class="color-verde">$300</td>
-                    </tr>
+                            <td><strong><a href=""><?php echo date_format($fecha_format, 'd/m/y')?></a></strong></td>
+                            <td><?php echo $actividad?></td>
+                            <td><?php echo $detalle?></td>
+                            <td class="color-verde">$<?php echo $subtotal?></td>
+                        </tr>
+                        <?php
+                    }
+                    $stmt->close();
+                    ?>
+                    
                 </tbody>
             </table>
 
@@ -74,27 +105,36 @@
                     <th>Total horas</th>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><strong><a href="">04/12/19</a></strong></td>
-                        <td>10:00</td>
-                        <td>13:00</td>
-                        <td class="color-verde">$70</td>
-                        <td>3</td>
-                    </tr>
-                    <tr>
-                        <td><strong><a href="">04/12/19</a></strong></td>
-                        <td>10:00</td>
-                        <td>13:00</td>
-                        <td class="color-verde">$70</td>
-                        <td>3</td>
-                    </tr>
-                    <tr>
-                        <td><strong><a href="">04/12/19</a></strong></td>
-                        <td>10:00</td>
-                        <td>13:00</td>
-                        <td class="color-verde">$140</td>
-                        <td>3</td>
-                    </tr>
+                    <?php try {
+                        require_once('../php/config.php');
+                        require_once('../php/SED.php');
+                        $num_emp = SED::decryption($empEnc);
+                        $sql = "SELECT fecha, hora_ent, hora_sal, transporte, horas_tra
+                        FROM calculos 
+                        INNER JOIN actividades
+                        ON calculos.num_actividad = actividades.num_actividad
+                        WHERE calculos.num_usuario = ? AND calculos.num_emp = ?";
+                        $stmt = $conn->prepare($sql);
+                        $stmt->bind_param('ii', $llave, $num_emp);
+                        $stmt->execute();
+                        $stmt->bind_result($fecha,$hora_ent,$hora_sal, $transporte, $horas);
+                    } catch (Exception $th) {
+                        echo $th->getMessae();
+                    }?>
+                    <?php while($stmt->fetch()){
+                        $fecha_format = date_create($fecha);
+                        ?>
+                        <tr>
+                            <td><strong><a href=""><?php echo date_format($fecha_format, 'd/m/y') ?></a></strong></td>
+                            <td><?php echo $hora_ent ?></td>
+                            <td><?php echo $hora_sal ?></td>
+                            <td class="color-verde">$<?php echo $transporte ?></td>
+                            <td><?php echo $horas ?></td>
+                        </tr>
+                        <?php
+                    }
+                    $stmt->close();
+                    ?>
                 </tbody>
             </table>
         </div>
