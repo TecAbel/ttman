@@ -498,7 +498,7 @@ input:focus, textarea:focus{
     font-size: 1.2em;
     text-align: left;
 }
-.total span{
+.monto-total{
     font-size: 1.5em;
 }
 .btns-archivo{

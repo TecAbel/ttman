@@ -30,6 +30,36 @@
             validateFrmPerfil(frm);
         });
     }
+
+    if(document.getElementById('txtSubtotal')){
+        const filasPrincipal = document.querySelectorAll('#tablaPrincipal tbody tr');
+        const filasDetalles = document.querySelectorAll('#tablaDetalles tbody tr');
+        var totalMonto = 0;
+        //recorrer fila de monto
+        filasPrincipal.forEach(function (e) {
+            var monto = e.querySelector('span');
+            totalMonto += parseInt(monto.textContent);
+        });
+
+        const subtotalDOM = document.querySelector('#txtSubtotal');
+        subtotalDOM.textContent = totalMonto;
+
+        //calculo de transporte
+        var totalTransporte = 0;
+        filasDetalles.forEach(function (e) {
+            var montoTransporte = e.querySelector('span');
+            totalTransporte += parseInt(montoTransporte.textContent);
+        })
+
+        const transporteDOM = document.querySelector('#txtTransporte');
+        transporteDOM.textContent = totalTransporte;
+
+        // calculo total de actividades
+        var totalActividades = 0;
+        const totalDom = document.querySelector('.total .monto-total');
+        totalActividades = totalMonto + totalTransporte;
+        totalDom.textContent = totalActividades;
+    }
 })();
 
 $(function(){

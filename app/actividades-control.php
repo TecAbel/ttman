@@ -34,7 +34,7 @@
         
         <div class="seccion-reporte bg-gris clearfix">
             <div class="total">
-                Total al momento <strong><span class="color-verde">$1080</span></strong>
+                Total al momento <strong><span class="color-verde">$<span class="monto-total"></span></span></strong>
             </div>
             <div class="btns-archivo">
                 <a href="registro-actividad?emp=<?php echo $empEnc ?>"><i class="color-verde fas fa-plus-circle"></i></a>
@@ -43,7 +43,7 @@
         </div>
 
         <div class="contenedor tablas">
-            <table class="tabla-actividades">
+            <table id="tablaPrincipal" class="tabla-actividades">
                 <thead>
                     <th>Fecha</th>
                     <th>Actividad</th>
@@ -55,7 +55,7 @@
                         require_once('../php/config.php');
                         require_once('../php/SED.php');
                         $num_emp = SED::decryption($empEnc);
-                        $sql = "SELECT num_cal,fecha,actividades.num_actividad, hora_ent, hora_sal, descripcion, transporte, subtotal_cal, total_cal 
+                        $sql = "SELECT num_cal,fecha,actividades.nombre_act, hora_ent, hora_sal, descripcion, transporte, subtotal_cal, total_cal 
                         FROM calculos 
                         INNER JOIN actividades
                         ON calculos.num_actividad = actividades.num_actividad
@@ -75,7 +75,7 @@
                             <td><strong><a href="editar-actividad?act=<?php echo $num_cal_enc ?>"><?php echo date_format($fecha_format, 'd/m/y')?></a></strong></td>
                             <td><?php echo $actividad?></td>
                             <td><?php echo $detalle?></td>
-                            <td class="color-verde">$<?php echo $subtotal?></td>
+                            <td class="color-verde">$<span><?php echo $subtotal?></span></td>
                         </tr>
                         <?php
                     }
@@ -92,12 +92,12 @@
                Subtotal
            </div>
            <div class="float-right centrado">
-               <strong class="color-verde">$900</strong>
+               <strong class="color-verde">$<span id="txtSubtotal"></span></strong>
            </div>
         </div>
         <h2>Detalles</h2>
         <div class="contenedor tablas ">
-            <table class="tabla-detalles">
+            <table id="tablaDetalles" class="tabla-detalles">
                 <thead>
                     <th>Fecha</th>
                     <th>Inicio</th>
@@ -129,7 +129,7 @@
                             <td><strong><?php echo date_format($fecha_format, 'd/m/y') ?></strong></td>
                             <td><?php echo $hora_ent ?></td>
                             <td><?php echo $hora_sal ?></td>
-                            <td class="color-verde">$<?php echo $transporte ?></td>
+                            <td class="color-verde">$<span><?php echo $transporte ?></span></td>
                             <td><?php echo $horas ?></td>
                         </tr>
                         <?php
@@ -144,7 +144,7 @@
                 Transporte
             </div>
             <div class="float-right centrado">
-                <strong class="color-verde">$280</strong>
+                <strong class="color-verde">$ <span id="txtTransporte"></span> </strong>
             </div>
          </div>
     </div>
