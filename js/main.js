@@ -38,6 +38,14 @@
             validateFrmUpdateCalculo(frm);
         });
     }
+    if(document.getElementById('frmPrevioReporte')){
+        const frm = $("#frmPrevioReporte");
+        $("#btnGenerarReporte").click(function (e) { 
+            e.preventDefault();
+            enviarReporte(frm);
+        });
+    }
+
 
     if(document.getElementById('btnEliminarActividad')){
         var actEnc = $('#txtAct').val();
@@ -414,4 +422,15 @@ function validateFrmUpdateCalculo(frm){
             }
         });
     }
+}
+
+function enviarReporte(frm) {
+    $.ajax({
+        type: "post",
+        url: "../php/reportes.php",
+        data: frm.serialize(), 
+        success: function (response) {
+            swal(response);
+        }
+    });
 }

@@ -1,48 +1,70 @@
 <?php
-    include '../php/includes/header.php';
     session_start();
     if(!isset($_SESSION['llave']) or !isset($_GET['emp'])){
         header('Location: ../php/destroy.php');
     }
     $llave = $_SESSION['llave'];
     $empEnc = $_GET['emp'];
+
+
+    try {
+        require_once('../php/config.php');
+        require_once('../php/SED.php');
+        $emp = SED::decryption($empEnc);
+        $sql = "SELECT nombre_user, banco, clabe, nombre_emp, nombre_emp_emp 
+                FROM usuarios
+                INNER JOIN empleadores ON usuarios.num_usuario = empleadores.num_usuario
+                WHERE empleadores.num_usuario = ? AND empleadores.num_emp = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('ii', $llave, $emp);
+        $stmt->execute();
+        $stmt->bind_result($nombre_user, $banco, $clabe, $nombre_emp, $nombreEmpresa);
+        $stmt->fetch();
+        $stmt->close();
+        #$conn->close();
+    } catch (Exception $th) {
+        echo $th->getMessage();
+    }
+
+    $datos_envio = array(
+        'de' => $nombre_user,
+        'para' => $nombre_emp.' de '.$nombreEmpresa,
+        'banco' => $banco,
+        'clabe' => $clabe
+    );
+    
 ?>
 
-    <div class="contenedor contenedor-app clearfix">
-        <a href="empleadores" class="btn volver"><i class="fas fa-chevron-left"></i> Volver</a>
-        <a href="#" class="btn volver der"><i class="fas fa-folder-open"></i> Reportes</a>
-        <h2>Control de actividades</h2>
-        <?php try {
-            require_once('../php/config.php');
-            require_once('../php/SED.php');
-            $num_emp = SED::decryption($empEnc);
-            $sql = "SELECT nombre_emp FROM empleadores WHERE num_emp = ?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param('i',$num_emp);
-            $stmt->execute();
-            $stmt->bind_result($nombreEmp);
-            $stmt->fetch();
-            $stmt->close();
-        } catch (Exception $th) {
-            echo $th->getMessage();
-        }?>
-        <h3><?php echo $nombreEmp ?> </h3>
+<?include '../php/includes/header.php';?>
+<div class="contenedor contenedor-app clearfix">
+    <a href="actividades-control?emp=<?php echo $empEnc?>" class="btn volver"><i class="fas fa-chevron-left"></i>Volver</a>
+        <h3>Verifique la información.</h3>
         <hr>
-        <p class="centrado"><small>Aquí podrás acceder a tus actividades registradas con este empleador e interactuar con dicha información.</small>
-        <p class="centrado"><span class="color-amarillo">NOTA:</span><small>Dando clic en la fecha de una actividad podrás editarla o eliminarla.</small></p>
-        </p>
+        <div class="seccion-reporte bg-gris">
         
-        <div class="seccion-reporte bg-gris clearfix">
-            <div class="total">
-                Total al momento <strong><span class="color-verde">$<span class="monto-total"></span></span></strong>
-            </div>
-            <div class="btns-archivo">
-                <a href="registro-actividad?emp=<?php echo $empEnc ?>"><i class="color-verde fas fa-plus-circle"></i></a>
-                <a href="previo-reporte?emp=<?php echo $empEnc ?>"><i class="far fa-file-pdf"></i></a>
-            </div>
-        </div>
-
-        <div class="contenedor tablas">
+            <div class="contenedor-campos">
+            
+            <form onsubmit="javascript: return false;" id="frmPrevioReporte" method="post">
+                <div class="campo w-100">
+                    <h4 class="centrado">Nota de remisión</h4>
+                </div>
+                <div class="campo">
+                    <label for="txtFecha">Fecha: <strong><?php echo date('d/m/Y') ?></strong></label>
+                </div>
+                <div class="campo">
+                    <label for="txtFecha">Nombre: <strong><?php echo $nombre_user ?></strong></label>
+                </div>
+                <div class="campo">
+                    <label for="txtFecha">Banco: <strong><span  class="color-verde"><?php echo $banco ?></span></strong></label>
+                    <label for="txtFecha">Clabe: <strong><span  class="color-verde"><?php echo $clabe ?></span></strong></label>
+                </div>
+                <div class="campo">
+                    <label for="txtFecha">Para: <strong><?php echo $nombre_emp ?></strong> de <strong><?php echo $nombreEmpresa ?></strong></label>
+                </div>
+                <div class="campo w-100">
+                    <label for="txtFecha">Pronductos / servicios: </label>
+                </div>
+            <div class="contenedor tablas campo w-100">
             <table id="tablaPrincipal" class="tabla-actividades">
                 <thead>
                     <th>Fecha</th>
@@ -67,7 +89,19 @@
                     } catch (Exception $th) {
                         echo $th->getMessae();
                     }
+                    $actividades_array = array();
                     while($stmt->fetch()){
+                        $actividad_array = array(
+                            'fecha' => $fecha,
+                            'actividad' => $actividad,
+                            'entrada' => $hora_ent,
+                            'salida' => $hora_sal,
+                            'detalle' => $detalle,
+                            'transporte' => $transporte,
+                            'subtotal' => $subtotal,
+                            'total' => $total
+                        );
+                        array_push($actividades_array, $actividad_array);
                         $fecha_format = date_create($fecha);
                         $num_cal_enc = SED::encryption($num_cal);
                         ?>
@@ -95,8 +129,10 @@
                <strong class="color-verde">$<span id="txtSubtotal"></span></strong>
            </div>
         </div>
-        <h2>Detalles</h2>
-        <div class="contenedor tablas ">
+        <div class="campo w-100">
+            <label for="txtFecha">Detalles: </label>
+        </div>
+        <div class="contenedor tablas campo w-100 ">
             <table id="tablaDetalles" class="tabla-detalles">
                 <thead>
                     <th>Fecha</th>
@@ -147,8 +183,21 @@
                 <strong class="color-verde">$ <span id="txtTransporte"></span> </strong>
             </div>
          </div>
+         <div class="campo w-100 total">
+            
+                <p class="centrado">Total: <strong><span class="color-verde">$<span class="monto-total"></span></span></strong></p>
+            
+         </div>
+         <div class="campo w-100">
+                <input type="submit" id="btnGenerarReporte" class="btn verde" value="Generar reporte">
+            </div>
+            </div>
+            <input type="hidden" name="datosEnvio" value = "<?php echo json_encode($datos_envio)?>">
+            <input type="hidden" name="datosActividades" value = "<?php echo json_encode($actividades_array)?>">
+            
+            </form>
+            </div>
+        </div>
     </div>
-<?php
-$conn->close();
-    include '../php/includes/footer.php';
-?>
+    
+<?include '../php/includes/footer.php';?>
