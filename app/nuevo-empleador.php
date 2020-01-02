@@ -1,5 +1,8 @@
 <?php
     include '../php/includes/header.php';
+    if(!isset($_SESSION['llave'])){
+        header('Location: destroy');
+    }
 ?>
 <div class="contenedor contenedor-app clearfix">
     <a href="empleadores" class="btn volver"><i class="fas fa-chevron-left"></i>Volver</a>

@@ -2,7 +2,7 @@
     include '../php/includes/header.php';
     session_start();
     if(!isset($_SESSION['llave']) or !isset($_GET['emp'])){
-        header('Location: ../');
+        header('Location: destroy');
     }
     $llave = $_SESSION['llave'];
     $empEnc = $_GET['emp'];

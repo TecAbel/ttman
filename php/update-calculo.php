@@ -73,7 +73,7 @@
         $msg = true;
         
     }else{
-        header('Location: ../');
+        header('Location: destroy');
     }
     echo $msg;
 

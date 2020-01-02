@@ -9,6 +9,7 @@
     --color-azul: #00344d;
     --color-negro: #343a40;
     --color-azul-boot: #007bff;
+    --color-rojo: #dc3545;
 
     --fuente-titulos: 'Courgette', cursive;
     --fuente-cuerpo:'Montserrat', sans-serif;
@@ -113,6 +114,14 @@ hr{
     background-color: var(--color-verde);
     color: white;
     transition: .4s ease-in-out;
+}
+.btn.rojo{
+    background-color: var(--color-rojo);
+    color: white;
+    transition: .4s ease-in-out;
+}
+.btn.rojo:hover{
+    background-color: #b62e3c;
 }
 .btn.verde:hover{
     background-color: rgb(24, 92, 24);
