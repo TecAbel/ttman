@@ -541,6 +541,12 @@ input:focus, textarea:focus{
     padding: 5px;
 }
 
+@media only screen and (min-width: 768px){
+    .nota-der{
+        font-size: 1em;
+    }
+}
+
 /*
     TABLAS
 */

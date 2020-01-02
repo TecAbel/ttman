@@ -326,6 +326,7 @@ function validateFrmRegistroActividad(frm) {
  * ACTUALIZAR CALCULO
  */
 function validateFrmUpdateCalculo(frm){
+    var empEnc = $('#txtEmp').val();
     var validator = frm.validate({
         rules:{
             txtInicio:{
@@ -357,7 +358,22 @@ function validateFrmUpdateCalculo(frm){
             url: "../php/update-calculo.php",
             data: frm.serialize(),
             success: function (response) {
-                swal(response);
+                if(response == true){
+                    swal({
+                        title: "Actividad actualizada",
+                        text: "Se ha actualizado correctamente la información de tu ectividad",
+                        icon: "success"
+                    }).then(()=>{
+                        location.href = `actividades-control?emp=${empEnc}`;
+                    });
+                }else{
+                    swal({
+                        title: "Hubo un error",
+                        text: "Vuelva a intentarlo. Su información sigue intacta.",
+                        icon: "error"
+                    });
+                }
+                //swal(response);
             }
         });
     }
