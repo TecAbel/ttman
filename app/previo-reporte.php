@@ -25,13 +25,6 @@
     } catch (Exception $th) {
         echo $th->getMessage();
     }
-
-    $datos_envio = array(
-        'de' => $nombre_user,
-        'para' => $nombre_emp.' de '.$nombreEmpresa,
-        'banco' => $banco,
-        'clabe' => $clabe
-    );
     
 ?>
 
@@ -49,20 +42,20 @@
                     <h4 class="centrado">Nota de remisión</h4>
                 </div>
                 <div class="campo">
-                    <label for="txtFecha">Fecha: <strong><?php echo date('d/m/Y') ?></strong></label>
+                    <label>Fecha: <strong id="txtFecha"><?php echo date('d/m/Y') ?></strong></label>
                 </div>
                 <div class="campo">
-                    <label for="txtFecha">Nombre: <strong><?php echo $nombre_user ?></strong></label>
+                    <label>Nombre: <strong id="txtNombre"><?php echo $nombre_user ?></strong></label>
                 </div>
                 <div class="campo">
-                    <label for="txtFecha">Banco: <strong><span  class="color-verde"><?php echo $banco ?></span></strong></label>
-                    <label for="txtFecha">Clabe: <strong><span  class="color-verde"><?php echo $clabe ?></span></strong></label>
+                    <label>Banco: <strong><span  class="color-verde" id="txtBanco"><?php echo $banco ?></span></strong></label>
+                    <label>Clabe: <strong><span  class="color-verde"><?php echo $clabe ?></span></strong></label>
                 </div>
                 <div class="campo">
-                    <label for="txtFecha">Para: <strong><?php echo $nombre_emp ?></strong> de <strong><?php echo $nombreEmpresa ?></strong></label>
+                    <label>Para: <strong><?php echo $nombre_emp ?></strong> de <strong><?php echo $nombreEmpresa ?></strong></label>
                 </div>
                 <div class="campo w-100">
-                    <label for="txtFecha">Pronductos / servicios: </label>
+                    <label>Pronductos / servicios: </label>
                 </div>
             <div class="contenedor tablas campo w-100">
             <table id="tablaPrincipal" class="tabla-actividades">
@@ -89,19 +82,7 @@
                     } catch (Exception $th) {
                         echo $th->getMessae();
                     }
-                    $actividades_array = array();
                     while($stmt->fetch()){
-                        $actividad_array = array(
-                            'fecha' => $fecha,
-                            'actividad' => $actividad,
-                            'entrada' => $hora_ent,
-                            'salida' => $hora_sal,
-                            'detalle' => $detalle,
-                            'transporte' => $transporte,
-                            'subtotal' => $subtotal,
-                            'total' => $total
-                        );
-                        array_push($actividades_array, $actividad_array);
                         $fecha_format = date_create($fecha);
                         $num_cal_enc = SED::encryption($num_cal);
                         ?>
@@ -130,7 +111,7 @@
            </div>
         </div>
         <div class="campo w-100">
-            <label for="txtFecha">Detalles: </label>
+            <label>Detalles: </label>
         </div>
         <div class="contenedor tablas campo w-100 ">
             <table id="tablaDetalles" class="tabla-detalles">
@@ -192,12 +173,11 @@
                 <input type="submit" id="btnGenerarReporte" class="btn verde" value="Generar reporte">
             </div>
             </div>
-            <input type="hidden" name="datosEnvio" value = "<?php echo json_encode($datos_envio)?>">
-            <input type="hidden" name="datosActividades" value = "<?php echo json_encode($actividades_array)?>">
             
             </form>
             </div>
         </div>
+        
     </div>
     
 <?include '../php/includes/footer.php';?>

@@ -425,10 +425,15 @@ function validateFrmUpdateCalculo(frm){
 }
 
 function enviarReporte(frm) {
+
+    var datosEnvio = {
+        fecha: document.getElementById('txtFecha').textContent,
+        nombre: document.getElementById('txtNombre').textContent
+    };
     $.ajax({
         type: "post",
         url: "../php/reportes.php",
-        data: frm.serialize(), 
+        data: datosEnvio, 
         success: function (response) {
             swal(response);
         }
