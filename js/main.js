@@ -39,6 +39,43 @@
         });
     }
 
+    if(document.getElementById('btnEliminarActividad')){
+        var actEnc = $('#txtAct').val();
+        var empEnc = $('#txtEmp').val();
+        $("#btnEliminarActividad").click(function (e) { 
+            e.preventDefault();
+            swal({
+                title: "Verifica tu acción",
+                text: "¿Está seguro de querer eliminar esta actividad?" ,
+                icon: "warning",
+                buttons: true,
+              }).then(()=>{
+                $.ajax({
+                    type: "post",
+                    url: `../php/eliminar-actividad?killAct=${actEnc}`,
+                    success: function (response) {
+                        if(response == true){
+                            swal({
+                                title: "Eliminado con éxito",
+                                text: "Se ha eliminado esta actividad exitosamente",
+                                icon: "success"
+                            }).then(()=>{
+                                location.href = `actividades-control?emp=${empEnc}`;
+                            });
+                        }else{
+                            swal({
+                                title: "Hubo un error",
+                                text: "Su información sigue intacta",
+                                icon: "error"
+                            })
+                        }
+                        //swal(response);
+                    }
+                });
+              });
+        });
+    }
+
     if(document.getElementById('txtSubtotal')){
         const filasPrincipal = document.querySelectorAll('#tablaPrincipal tbody tr');
         const filasDetalles = document.querySelectorAll('#tablaDetalles tbody tr');

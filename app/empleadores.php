@@ -2,7 +2,7 @@
     include '../php/includes/header.php';
     session_start();
     if(!isset($_SESSION['llave'])){
-        header('Location: destroy');
+        header('Location: ../php/destroy.php');
     }
 ?>
 

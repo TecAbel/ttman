@@ -1,7 +1,7 @@
 <?php
     include '../php/includes/header.php';
     if(!isset($_SESSION['llave'])){
-        header('Location: destroy');
+        header('Location: ../php/destroy.php');
     }
 ?>
 <div class="contenedor contenedor-app clearfix">

@@ -2,7 +2,7 @@
     include '../php/includes/header.php';
     session_start();
     if(!isset($_SESSION['llave']) or !isset($_GET['act'])){
-        header('Location: destroy');
+        header('Location: ../php/destroy.php');
     }
     require_once('../php/SED.php');
     $llave = $_SESSION['llave'];
@@ -57,9 +57,11 @@
                 <input type="number" value="<?php echo $transporte?>" id="txtTransporte" name="txtTransporte" class="color-verde">
             </div>
             <input type="hidden" id="txtEmp" name="txtEmp" value="<?php echo $num_empEnc ?>">
+            <input type="hidden" id=txtAct value="<?php echo $actEnc ?>">
             <div class="campo w-100">
                 <input type="submit" id="btnActividadUpdate" class="btn verde" value="Editar actividad">
-                <a class="btn rojo" href="../php/eliminar-actividad?kill-act=<?php echo $actEnc ?>">Eliminar actividad</a>
+                
+                <button class="btn rojo" id="btnEliminarActividad">Eliminar actividad</button>
                 <a href="actividades-control?emp=<?php echo $num_empEnc?>" class="btn azul">Regresar</a>
             </div>
         </form>
