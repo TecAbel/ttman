@@ -9,10 +9,11 @@
         $salida = $_POST['txtSalida'];
         $detalle = $_POST['txtDetalle'];
         $transporte = $_POST['txtTransporte'];
+        $num_calEnc = $_POST['txtAct'];
         $num_empEnc = $_POST['txtEmp'];
         require_once('SED.php');
+        $num_cal = SED::decryption($num_calEnc);
         $num_emp = SED::decryption($num_empEnc);
-
         /* Cálculo de horas redondeo a partir de media hora */
 
         $diferencia = strtotime($salida) - strtotime($inicio);
@@ -22,9 +23,9 @@
             require_once('config.php');
             $sqlCalculo = "UPDATE calculos 
                     SET hora_ent = ?, hora_sal = ?, horas_tra = ?, descripcion = ?, transporte = ?
-                    WHERE num_emp = ? AND num_usuario = ?";
+                    WHERE num_cal = ? AND num_usuario = ?";
             $stmtCalculo = $conn->prepare($sqlCalculo);
-            $stmtCalculo->bind_param('ssssiii', $inicio, $salida, $horas_final, $detalle,$transporte, $num_emp, $llave);
+            $stmtCalculo->bind_param('ssssiii', $inicio, $salida, $horas_final, $detalle,$transporte, $num_cal, $llave);
             $stmtCalculo->execute();
             $stmtCalculo->close();
         } catch (Exception $th) {

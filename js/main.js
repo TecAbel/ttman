@@ -398,7 +398,7 @@ function validateFrmUpdateCalculo(frm){
                 if(response == true){
                     swal({
                         title: "Actividad actualizada",
-                        text: "Se ha actualizado correctamente la información de tu ectividad",
+                        text: "Se ha actualizado correctamente la información de tu actividad",
                         icon: "success"
                     }).then(()=>{
                         location.href = `actividades-control?emp=${empEnc}`;

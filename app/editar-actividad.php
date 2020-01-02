@@ -57,7 +57,7 @@
                 <input type="number" value="<?php echo $transporte?>" id="txtTransporte" name="txtTransporte" class="color-verde">
             </div>
             <input type="hidden" id="txtEmp" name="txtEmp" value="<?php echo $num_empEnc ?>">
-            <input type="hidden" id=txtAct value="<?php echo $actEnc ?>">
+            <input type="hidden" id="txtAct" name="txtAct" value="<?php echo $actEnc ?>">
             <div class="campo w-100">
                 <input type="submit" id="btnActividadUpdate" class="btn verde" value="Editar actividad">
                 
