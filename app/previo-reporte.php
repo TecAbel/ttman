@@ -5,6 +5,8 @@
     }
     $llave = $_SESSION['llave'];
     $empEnc = $_GET['emp'];
+    require_once('../php/SED.php');
+    $emp = SED::decryption($empEnc);
 
 
     try {
@@ -42,17 +44,17 @@
                     <h4 class="centrado">Nota de remisión</h4>
                 </div>
                 <div class="campo">
-                    <label>Fecha: <strong id="txtFecha"><?php echo date('d/m/Y') ?></strong></label>
+                    <label>Fecha: <strong id="txtFecha_reporte"><?php echo date('d/m/Y') ?></strong></label>
                 </div>
                 <div class="campo">
                     <label>Nombre: <strong id="txtNombre"><?php echo $nombre_user ?></strong></label>
                 </div>
                 <div class="campo">
                     <label>Banco: <strong><span  class="color-verde" id="txtBanco"><?php echo $banco ?></span></strong></label>
-                    <label>Clabe: <strong><span  class="color-verde"><?php echo $clabe ?></span></strong></label>
+                    <label>Clabe: <strong><span  class="color-verde" id="txtClabe"><?php echo $clabe ?></span></strong></label>
                 </div>
                 <div class="campo">
-                    <label>Para: <strong><?php echo $nombre_emp ?></strong> de <strong><?php echo $nombreEmpresa ?></strong></label>
+                    <label>Para: <strong id="txtNombreEmp"><?php echo $nombre_emp ?></strong> de <strong id="txtEmpresa"><?php echo $nombreEmpresa ?></strong></label>
                 </div>
                 <div class="campo w-100">
                     <label>Pronductos / servicios: </label>
@@ -87,10 +89,10 @@
                         $num_cal_enc = SED::encryption($num_cal);
                         ?>
                         <tr>
-                            <td><strong><a href="editar-actividad?act=<?php echo $num_cal_enc ?>"><?php echo date_format($fecha_format, 'd/m/y')?></a></strong></td>
-                            <td><?php echo $actividad?></td>
-                            <td><?php echo $detalle?></td>
-                            <td class="color-verde">$<span><?php echo $subtotal?></span></td>
+                            <td id="txtFecha_tb"><?php echo date_format($fecha_format, 'd/m/y')?></td>
+                            <td id="txtActividad_tb"><?php echo $actividad?></td>
+                            <td id="txtDetalle_tb"><?php echo $detalle?></td>
+                            <td class="color-verde" id="txtSubtotal_tb">$<span><?php echo $subtotal?></span></td>
                         </tr>
                         <?php
                     }
@@ -143,11 +145,11 @@
                         $fecha_format = date_create($fecha);
                         ?>
                         <tr>
-                            <td><strong><?php echo date_format($fecha_format, 'd/m/y') ?></strong></td>
-                            <td><?php echo $hora_ent ?></td>
-                            <td><?php echo $hora_sal ?></td>
-                            <td class="color-verde">$<span><?php echo $transporte ?></span></td>
-                            <td><?php echo $horas ?></td>
+                            <td id="txtFechaDetalle"><?php echo date_format($fecha_format, 'd/m/y') ?></td>
+                            <td id="txtHoraEntDetalle"><?php echo $hora_ent ?></td>
+                            <td id="txtHoraSalDetalle"><?php echo $hora_sal ?></td>
+                            <td class="color-verde">$<span id="txtTransporteDetalle" ><?php echo $transporte ?></span></td>
+                            <td id="txtHorasDetalle"><?php echo $horas ?></td>
                         </tr>
                         <?php
                     }
@@ -173,11 +175,13 @@
                 <input type="submit" id="btnGenerarReporte" class="btn verde" value="Generar reporte">
             </div>
             </div>
-            
+            <input type="hidden" id="txtEmpEnc" value="<?php echo $emp ?>">
             </form>
             </div>
         </div>
         
     </div>
     
-<?include '../php/includes/footer.php';?>
+<?
+$conn->close();
+include '../php/includes/footer.php';?>

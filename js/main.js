@@ -42,7 +42,7 @@
         const frm = $("#frmPrevioReporte");
         $("#btnGenerarReporte").click(function (e) { 
             e.preventDefault();
-            enviarReporte(frm);
+            enviarReporte();
         });
     }
 
@@ -83,7 +83,9 @@
               });
         });
     }
-
+/**
+ * Calculo de totales
+ */
     if(document.getElementById('txtSubtotal')){
         const filasPrincipal = document.querySelectorAll('#tablaPrincipal tbody tr');
         const filasDetalles = document.querySelectorAll('#tablaDetalles tbody tr');
@@ -424,11 +426,52 @@ function validateFrmUpdateCalculo(frm){
     }
 }
 
-function enviarReporte(frm) {
-
+function enviarReporte() {
+    const filasPrincipal = document.querySelectorAll('#tablaPrincipal tbody tr');
+    const filasDetalles = document.querySelectorAll('#tablaDetalles tbody tr');
+    var datosActividades = [];
+    var datosDetalles =[];
+    filasPrincipal.forEach(function (e) {
+        var txtFecha = e.querySelector('#txtFecha_tb'); 
+        var txtActividad = e.querySelector('#txtActividad_tb');
+        var txtDetalle = e.querySelector('#txtDetalle_tb');
+        var txtMonto = e.querySelector('#txtSubtotal_tb');
+        //console.log(txtFecha);
+        datosActividades.push({
+            fecha: txtFecha.textContent,
+            actividad: txtActividad.textContent,
+            detalle: txtDetalle.textContent,
+            monto: txtMonto.textContent
+        });
+    });
+    filasDetalles.forEach(function (e) {
+        var FechaDetalle = e.querySelector('#txtFechaDetalle'); 
+        var horaEntDetalle = e.querySelector('#txtHoraEntDetalle');
+        var horaSalidaDetalle = e.querySelector('#txtHoraSalDetalle');
+        var transporte = e.querySelector('#txtTransporteDetalle');
+        var totalHoras = e.querySelector('#txtHorasDetalle');
+        //console.log(txtFecha);
+        datosDetalles.push({
+            fecha: FechaDetalle.textContent,
+            horaEntrada: horaEntDetalle.textContent,
+            horaSalida: horaSalidaDetalle.textContent,
+            transporte: transporte.textContent,
+            totalHoras: totalHoras.textContent
+        });
+    });
+    
+    
     var datosEnvio = {
-        fecha: document.getElementById('txtFecha').textContent,
-        nombre: document.getElementById('txtNombre').textContent
+        empEnc: $("#txtEmpEnc").val(),
+        fecha: document.getElementById('txtFecha_reporte').textContent,
+        nombre: document.getElementById('txtNombre').textContent,
+        empleador: document.getElementById('txtNombreEmp').textContent,
+        empresa: document.getElementById('txtEmpresa').textContent,
+        banco: document.getElementById('txtBanco').textContent,
+        clabe: document.getElementById('txtClabe').textContent,
+        total: document.querySelector('.monto-total').textContent,
+        actividades: datosActividades,
+        datellesActividades: datosDetalles 
     };
     $.ajax({
         type: "post",
