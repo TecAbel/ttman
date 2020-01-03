@@ -35,6 +35,7 @@
     <a href="actividades-control?emp=<?php echo $empEnc?>" class="btn volver"><i class="fas fa-chevron-left"></i>Volver</a>
         <h3>Verifique la información.</h3>
         <hr>
+        <?php ob_start(); ?>
         <div class="seccion-reporte bg-gris">
         
             <div class="contenedor-campos">
@@ -173,7 +174,8 @@
          </div>
          <div class="campo w-100">
                 <input type="submit" id="btnGenerarReporte" class="btn verde" value="Generar reporte">
-            </div>
+        </div>
+
             </div>
             <input type="hidden" id="txtEmpEnc" value="<?php echo $emp ?>">
             </form>
