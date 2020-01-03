@@ -6,7 +6,6 @@
         $fechaFile = date('dmY');
         $llave = $_SESSION['llave'];
         $json_detalle = json_encode($_POST);
-        echo $json_detalle;
         $urlReporte = '../app/files/ttman'.$llave.$emp.$fechaFile.'.pdf';
         try {
             require_once('config.php');

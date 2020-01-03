@@ -478,7 +478,9 @@ function enviarReporte() {
         url: "../php/reportes.php",
         data: datosEnvio, 
         success: function (response) {
-            swal(response);
+            if(response == true){
+                location.href = "../app/vista-reporte?emp="+$('#txtEmp').val();
+            }
         }
     });
 }
