@@ -14,6 +14,10 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link href="https://fonts.googleapis.com/css?family=Courgette|Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/estilos.css">
+    <!--PWA-->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#D57E40"/>
+    <link rel="apple-touch-icon" href="img/icono-pwa.jpg">
 
     <title>TTMAN</title>
 </head>
