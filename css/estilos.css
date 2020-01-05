@@ -100,6 +100,14 @@ hr{
     border: none;
 }
 
+.btn.pdf{
+    border: var(--color-enfasis) 1px solid;
+    background-color: white;
+    max-width: 200px;
+    margin: 0 auto;
+    color: var(--color-enfasis);
+}
+
 .btn.primario{
     background-color: var(--color-primario);
     color: white;

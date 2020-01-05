@@ -10,7 +10,7 @@
 
     <div class="contenedor contenedor-app clearfix">
         <a href="empleadores" class="btn volver"><i class="fas fa-chevron-left"></i> Volver</a>
-        <a href="#" class="btn volver der"><i class="fas fa-folder-open"></i> Reportes</a>
+        <a href="archivo-reportes?emp=<?php echo $empEnc?>" class="btn volver der"><i class="fas fa-folder-open"></i> Reportes</a>
         <h2>Control de actividades</h2>
         <?php try {
             require_once('../php/config.php');
