@@ -202,8 +202,7 @@ function validateFrmNewEmpleador(frm) {
                         location.href = '../app/empleadores';
                     });
                 }else{
-                    //swal('Hubo un error','Intente de nuevo, si el problema sigue contáctenos','error');
-                    swal(response);
+                    swal('Hubo un error','Intente de nuevo, si el problema sigue contáctenos','error');
                     $("#frmIngreso")[0].reset();
                 }
                 

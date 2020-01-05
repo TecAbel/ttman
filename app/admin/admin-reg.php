@@ -14,11 +14,26 @@
             $stmt->bind_param('ssss', $correo, $nombre,$numero, $pase);
             $stmt->execute();
             $stmt->close();
+            $msg = true;
+        } catch (Exception $e) {
+            $msg = $e->getMessage();
+        }
+        try {
+            require_once('../../php/config.php');
+            $stmt = $conn->prepare("SELECT num_usuario FROM usuarios WHERE correo = ?");
+            $stmt->bind_param('s', $correo);
+            $stmt->execute();
+            $stmt->bind_result($num_usuario);
+            $stmt->fetch();
+            $stmt->close();
             $conn->close();
             $msg = true;
         } catch (Exception $e) {
             $msg = $e->getMessage();
         }
+
+        $carpeta = '../files/'.$num_usuario;
+        mkdir($carpeta, 0777, true);
 
         echo $msg;
     }

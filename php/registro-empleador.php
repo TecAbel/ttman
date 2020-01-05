@@ -28,13 +28,12 @@
                         FROM empleadores 
                         WHERE nombre_emp = ? AND num_usuario = ?";
                 $stmt = $conn->prepare($sql);
-                $stmt->bind_param('ii',$nombre,$llave);
+                $stmt->bind_param('si',$nombre,$llave);
+
                 $stmt->execute();
                 $stmt->bind_result($num_emp);
                 $stmt->fetch();
                 $stmt->close();
-                ;
-                
                 $conn->close();
                 $msg = true;
             } catch (Exception $th) {
