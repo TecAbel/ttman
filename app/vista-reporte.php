@@ -169,13 +169,14 @@
                             require_once('../php/SED.php');
                             $fecha_reporte = date('Y-m-d');
                             $num_emp = SED::decryption($empEnc);
-                            $sql = "SELECT reporte_total, url_reporte
-                            FROM reportes 
-                            WHERE num_usuario = 13 AND num_emp = 2 AND fecha = '$fecha_reporte'";
+                            $sql = "SELECT id_reporte,reporte_total, url_reporte
+                            FROM reportes
+                            WHERE num_usuario = ? AND num_emp = ? AND fecha = '$fecha_reporte' 
+                            ORDER BY id_reporte DESC LIMIT 1";
                             $stmt = $conn->prepare($sql);
                             $stmt->bind_param('ii', $llave, $num_emp);
                             $stmt->execute();
-                            $stmt->bind_result($reporte_total, $url);
+                            $stmt->bind_result($id_reporte,$reporte_total, $url);
                             $stmt->fetch();
                             $stmt->close();
                         } catch (Exception $th) {

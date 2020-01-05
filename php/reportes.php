@@ -4,7 +4,7 @@
         $emp = filter_var($_POST['empEnc'], FILTER_SANITIZE_NUMBER_INT);
         $total_reporte = filter_var($_POST['total'], FILTER_SANITIZE_NUMBER_INT);
         $fecha = date('Y-m-d');
-        $fechaFile = date('dmY');
+        $fechaFile = date('dmYhis');
         $llave = $_SESSION['llave'];
 
         $json_detalle = json_encode($_POST);
