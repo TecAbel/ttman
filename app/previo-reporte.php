@@ -178,6 +178,7 @@
 
             </div>
             <input type="hidden" id="txtEmpEnc" value="<?php echo $emp ?>">
+            <input type="hidden" id="txtEmpEncjs" value="<?php echo $empEnc ?>">
             </form>
             </div>
         </div>

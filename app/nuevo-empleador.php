@@ -1,5 +1,6 @@
 <?php
     include '../php/includes/header.php';
+    session_start();
     if(!isset($_SESSION['llave'])){
         header('Location: ../php/destroy.php');
     }

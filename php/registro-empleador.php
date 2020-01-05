@@ -18,12 +18,32 @@
                 $stmt->bind_param('sssssi',$llave, $nombre,$empresa,$correo,$telefono,$cuota);
                 $stmt->execute();
                 $stmt->close();
+                $msg = true;
+            } catch (Exception $th) {
+                $msg = $th->getMessage();
+            }
+            try {
+                require_once('config.php');
+                $sql = "SELECT num_emp 
+                        FROM empleadores 
+                        WHERE nombre_emp = ? AND num_usuario = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param('ii',$nombre,$llave);
+                $stmt->execute();
+                $stmt->bind_result($num_emp);
+                $stmt->fetch();
+                $stmt->close();
+                ;
+                
                 $conn->close();
                 $msg = true;
             } catch (Exception $th) {
-                echo $th->getMessage();
+                $msg = $th->getMessage();
             }
 
+            
+            $carpeta = '../app/files/'.$llave.'/'.$num_emp;
+            mkdir($carpeta, 0777, true);
             echo $msg;
         }
     }

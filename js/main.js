@@ -202,7 +202,8 @@ function validateFrmNewEmpleador(frm) {
                         location.href = '../app/empleadores';
                     });
                 }else{
-                    swal('Hubo un error','Intente de nuevo, si el problema sigue contáctenos','error');
+                    //swal('Hubo un error','Intente de nuevo, si el problema sigue contáctenos','error');
+                    swal(response);
                     $("#frmIngreso")[0].reset();
                 }
                 
@@ -479,7 +480,9 @@ function enviarReporte() {
         data: datosEnvio, 
         success: function (response) {
             if(response == true){
-                location.href = "../app/vista-reporte?emp="+$('#txtEmp').val();
+                location.href = "../app/vista-reporte?emp="+$('#txtEmpEncjs').val();
+            }else{
+                swal(response);
             }
         }
     });
