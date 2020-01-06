@@ -1,4 +1,5 @@
 <?php
+    include '../php/includes/header.php';
     session_start();
     if(!isset($_SESSION['llave']) or !isset($_GET['emp'])){
         header('Location: ../php/destroy.php');
@@ -60,7 +61,7 @@
                 <div class="campo w-100">
                     <label>Pronductos / servicios: </label>
                 </div>
-            <div class="contenedor tablas campo w-100">
+            <div class="contenedor tablas previo-reporte previo-reporte campo w-100">
             <table id="tablaPrincipal" class="tabla-actividades">
                 <thead>
                     <th>Fecha</th>
@@ -116,7 +117,7 @@
         <div class="campo w-100">
             <label>Detalles: </label>
         </div>
-        <div class="contenedor tablas campo w-100 ">
+        <div class="contenedor tablas previo-reporte campo w-100 ">
             <table id="tablaDetalles" class="tabla-detalles">
                 <thead>
                     <th>Fecha</th>
@@ -185,6 +186,6 @@
         
     </div>
     
-<?
+<?php
 $conn->close();
 include '../php/includes/footer.php';?>

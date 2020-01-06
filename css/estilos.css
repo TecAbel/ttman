@@ -309,7 +309,7 @@ hr{
     background-position: center;
     width: 100%;
 }
-.contenedor.tablas{
+.contenedor.tablas.previo-reporte{
     width: 90vw;
     padding: 0!important;
 }
