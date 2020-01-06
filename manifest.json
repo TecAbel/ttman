@@ -1,0 +1,31 @@
+{
+    "short_name": "TTMAN",
+    "name": "Time Task Manager",
+    "icons": [
+      {
+        "src": "img/icono-pwa.jpg",
+        "type": "image/jpg",
+        "sizes": "48x48"
+      },
+      {
+        "src": "img/icono-pwa.jpg",
+        "type": "image/jpg",
+        "sizes": "96x96"
+      },
+      {
+        "src": "img/icono-pwa.jpg",
+        "type": "image/jpg",
+        "sizes": "192x192"
+      },
+      {
+        "src": "img/icono-pwa.jpg",
+        "type": "image/jpg",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "index.php",
+    "display": "standalone",
+    "background_color": "#fff",
+    "theme_color": "#D57E40",
+    "description": "PWA para generar reportes de honorarios para usuarios que trabajen de informalmente"
+  }
